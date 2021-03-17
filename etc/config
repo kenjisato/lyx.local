@@ -5,7 +5,8 @@ VERSION=2.3
 # MacOS defaults.
 LyX=/Applications/LyX.app/Contents/MacOS/lyx
 LyXDir=/Applications/LyX.app/Contents/Resources
-UserDir=${HOME}/Library/Application\ Support/LyX-${VERSION}
+#UserDir=${HOME}/Library/Application\ Support/LyX-${VERSION}
+UserDir=${HOME}/local/src/github.com/kenjisato/lyx.local/test
 
 # Linux defaults.
 #LyX=lyx

@@ -1,0 +1,21 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass{Japanese Book (BXJS Class)}
+#  \DeclareCategory{Books}
+# Japanese BXJS book textclass is an extension of JS textclass
+# to incorporate other TeX engines than (u)pLaTeX, e.g. XeLaTeX.
+# Author : Koji Yokota (yokota6@gmail.com)
+# Extended by Kenji Sato (mail@kenjisato.jp) to support bxjs*-specific features.
+
+# This style provides japanese features
+Format 66
+Provides japanese 1
+
+# Input general definitions
+Input book.layout
+
+# Definitions specific to bxjsclass
+Input bxjsclass.inc
+
+ClassOptions
+	Other "autodetect-engine, dvi=dvipdfmx, ja=standard"
+End

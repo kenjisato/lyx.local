@@ -1,0 +1,57 @@
+#\DeclareLyXModule{Exam}
+#DescriptionBegin
+#Lyx module for exams and problems sets. It defines several
+#custom insets.
+#DescriptionEnd
+# Author : Kenji Sato <mail@kenjisato.jp>
+
+Format 60
+
+Counter blanknum
+End
+
+Preamble
+    \usepackage{calc, ifdraft}
+EndPreamble
+
+InsetLayout  "Flex:Blank"
+    LyXType     custom
+    Decoration  classic
+    LabelString Blank
+    LatexName   blankbox
+    LatexType   command
+    Counter     blanknum
+    Preamble
+        \newcounter{blanknum}
+        \newcommand{\blankbox}[1]{%
+          \refstepcounter{blanknum}
+          \framebox[2em+\widthof{#1}][c]{(\theblanknum)\ifdraft{ #1}{}}
+        }
+    EndPreamble
+    MultiPar        false
+    ContentAsLabel  true
+    LabelFont
+        Size        Small
+    EndFont
+End
+
+InsetLayout "Flex:Solution"
+    LyxType         custom
+    Decoration      classic
+    LabelString     solution
+    LatexType       command
+    LatexName       sol
+    Font
+        Size        Normal
+    EndFont
+    LabelFont
+        Color       footlabel
+        Size        Small
+    EndFont
+    Preamble
+        \newcommand{\solutionlabel}{(Solution)}
+        \newcommand{\thesolution}{\paragraph{\solutionlabel}}
+        \newcommand{\sol}[1]{\ifdraft{\thesolution #1}{}}
+    EndPreamble
+    MultiPar        true
+End

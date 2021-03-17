@@ -1,6 +1,7 @@
 source etc/config
 source etc/util.sh
 
+current=$(pwd)
 cd LyX
 
 for d in ${directories[@]}
@@ -21,4 +22,6 @@ do
   done
 done
 
-cd ..
+cd $UserDirs
+python $LyXDir/configure.py
+cd current
