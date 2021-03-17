@@ -1,0 +1,21 @@
+#\DeclareLyXModule{Input}
+#DescriptionBegin
+#A custom inset for \input{}. Especially useful for \input{}'ing a small
+#external plain text.
+#DescriptionEnd
+# Author : Kenji Sato <mail@kenjisato.jp>
+
+Format 66
+
+InsetLayout  "Flex:Input"
+    LyXType     custom
+    Decoration  classic
+    LabelString Input
+    LatexName   input
+    LatexType   command
+    MultiPar        false
+    ContentAsLabel  true
+    LabelFont
+        Size        Small
+    EndFont
+End
