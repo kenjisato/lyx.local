@@ -6,9 +6,7 @@
 \origin unavailable
 \textclass bxjsarticle
 \begin_preamble
-\usepackage[margin=2cm,includefoot]{geometry}
-\usepackage{newpxmath,newpxtext}
-\usepackage{pgfpages}
+
 \end_preamble
 \options a4paper
 \use_default_options true
