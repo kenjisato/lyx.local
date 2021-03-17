@@ -15,11 +15,11 @@ is_newer() {
     exit 1
   fi
 
-  if [ ! -f $1 -o ! -f $2 ]; then
+  if [ ! -f "$1" -o ! -f "$2" ]; then
     return 1
   fi
 
-  if [ -n "$(find $1 -newer $2 -print)" ]; then
+  if [ -n "$(find \"$1\" -newer \"$2\" -print)" ]; then
     return 0
   else
     return 1
