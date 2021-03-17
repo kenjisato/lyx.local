@@ -32,10 +32,10 @@ do
   done
 done
 
+cd "$current"
+
 if "$configure"; then
-  cd "$UserDir"
-  python "$LyXDir/configure.py"
+  echo You must run "make reconfigure" to let LyX know the changes.
 else
   echo Nothing to deploy.
 fi
-cd "$current"

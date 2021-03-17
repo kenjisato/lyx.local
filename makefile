@@ -1,4 +1,5 @@
 # Deploy lyx.local
+include etc/config
 
 .PHONY: all
 all:
@@ -7,3 +8,7 @@ all:
 .PHONY: deploy
 deploy:
 	@bash etc/deploy.sh
+
+.PHONY: reconfigure
+reconfigure:
+	@bash etc/reconfigure.sh
