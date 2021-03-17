@@ -1,6 +1,7 @@
 source etc/config
 source etc/util.sh
 
+configure=false
 current=$(pwd)
 cd LyX
 
@@ -13,15 +14,26 @@ do
       continue
     fi
     dest=$UserDir/$from
-    if [ -e "$dest" ] && is_in "$from" "${require_backup[@]}"; then
-      dt=$(date "+%Y%m%d.%H%M%S")
-      cp $dest $dest-$dt
-      echo backup created: $dest-$dt
+    if [ -e "$dest" ]; then
+      if is_newer "$dest" "$from"; then
+        continue
+      fi
+
+      if is_in "$from" "${require_backup[@]}"; then
+        dt=$(date "+%Y%m%d.%H%M%S")
+        cp $dest $dest-$dt
+        echo backup created: $dest-$dt
+      fi
     fi
     cp $from $dest
+    configure=true
   done
 done
 
-cd $UserDirs
-python $LyXDir/configure.py
-cd current
+if "$configure"; then
+  cd $UserDirs
+  python $LyXDir/configure.py
+else
+  echo Nothing to deploy.
+fi
+cd $current

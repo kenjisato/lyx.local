@@ -2,8 +2,8 @@
 
 .PHONY: all
 all:
-	@echo Under construction.
+	@echo To deploy run:  make deploy
 
 .PHONY: deploy
 deploy:
-	bash etc/deploy.sh
+	@bash etc/deploy.sh
