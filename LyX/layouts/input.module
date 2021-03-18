@@ -1,4 +1,4 @@
-#\DeclareLyXModule{Input}
+#\DeclareLyXModule{lyx.local / Input}
 #DescriptionBegin
 #A custom inset for \input{}. Especially useful for \input{}'ing a small
 #external plain text.

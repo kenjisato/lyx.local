@@ -1,4 +1,4 @@
-#\DeclareLyXModule{Exam}
+#\DeclareLyXModule{lyx.local / Exam}
 #DescriptionBegin
 #Lyx module for exams and problems sets. It defines several
 #custom insets.
