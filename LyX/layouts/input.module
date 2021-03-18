@@ -15,7 +15,13 @@ InsetLayout  "Flex:Input"
     LatexType   command
     MultiPar        false
     ContentAsLabel  true
+    Font
+      Color               latex
+      Family              typewriter
+    EndFont
     LabelFont
-        Size        Small
+      Color               latex
+      Family              typewriter
+      Size                Small
     EndFont
 End
