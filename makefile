@@ -12,3 +12,7 @@ deploy:
 .PHONY: reconfigure
 reconfigure:
 	@bash etc/reconfigure.sh
+
+.PHONY: upgrade
+upgrade:
+	@bash etc/upgrade.sh
