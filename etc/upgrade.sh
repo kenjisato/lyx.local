@@ -28,6 +28,6 @@ if "$configure"; then
   echo
 else
   echo
-  echo Nothing to deploy.
+  echo All files are up to date!
   echo
 fi
