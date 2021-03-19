@@ -1,6 +1,11 @@
-source etc/config
-source etc/deploy_targets
 source etc/util.sh
+if verify_cfg etc/config; then
+  source etc/config
+else
+  exit 1
+fi
+source etc/deploy_targets
+source etc/deploy_targets.local
 
 configure=false
 current=$(pwd)
@@ -47,5 +52,5 @@ if "$configure"; then
 else
   echo
   echo Nothing to deploy.
-  echo 
+  echo
 fi

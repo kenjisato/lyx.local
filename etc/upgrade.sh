@@ -8,7 +8,7 @@ cd LyX
 for f in layouts/*
 do
   [ -e "$f" ] || continue
-  python "$LyXDir/scripts/layout2layout.py" $f $f.temp
+  "$Python" "$LyXDir/scripts/layout2layout.py" $f $f.temp
 
   diff -s $f $f.temp > /dev/null 2>&1
   if [ $? -eq 0 ]; then
