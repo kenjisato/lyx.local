@@ -1,0 +1,915 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass bxjsarticle
+\begin_preamble
+\usepackage{luatexja-otf}
+\end_preamble
+\options a4paper,lualatex,ja=standard
+\use_default_options false
+\begin_modules
+pxrubrica
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+ルビ
+\end_layout
+
+\begin_layout Author
+佐藤 健治
+\begin_inset Newline newline
+\end_inset
+
+kenjisato.jp
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+や|とう|たか|ゆき
+\end_layout
+
+\end_inset
+
+八登崇之
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+し
+\end_layout
+
+\end_inset
+
+氏
+\end_layout
+
+\end_inset
+
+による
+\series bold
+pxrubrica
+\series default
+パッケージを
+\begin_inset Flex 和文ルビ
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+もち
+\end_layout
+
+\end_inset
+
+用
+\end_layout
+
+\end_inset
+
+いてルビおよび
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+けん|てん
+\end_layout
+
+\end_inset
+
+圏点
+\end_layout
+
+\end_inset
+
+を
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+り|よう
+\end_layout
+
+\end_inset
+
+利用
+\end_layout
+
+\end_inset
+
+した
+\begin_inset Flex 圏点
+status collapsed
+
+\begin_layout Plain Layout
+サンプル
+\end_layout
+
+\end_inset
+
+です
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+八登崇之「pxrubrica パッケージ」v1.3d (2021/03/06), 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+http://tug.ctan.org/language/japanese/pxrubrica/pxrubrica.pdf
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+。このドキュメントの
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+さく|せい
+\end_layout
+
+\end_inset
+
+作成
+\end_layout
+
+\end_inset
+
+には\SpecialChar LyX
+を
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+し|よう
+\end_layout
+
+\end_inset
+
+使用
+\end_layout
+
+\end_inset
+
+しました。
+\series bold
+pxrubrica
+\series default
+パッケージを
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+べん|り
+\end_layout
+
+\end_inset
+
+便利
+\end_layout
+
+\end_inset
+
+に
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+つか
+\end_layout
+
+\end_inset
+
+使
+\end_layout
+
+\end_inset
+
+うためのカスタムモジュール 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+pxrubrica.module
+\end_layout
+
+\end_inset
+
+を
+\begin_inset Flex 欧文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+ぎっとはぶ
+\end_layout
+
+\end_inset
+
+GitHub
+\end_layout
+
+\end_inset
+
+レポジトリ
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "kenjisato/lyx.local"
+target "https://github.com/kenjisato/lyx.local"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ で
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+こう|かい
+\end_layout
+
+\end_inset
+
+公開
+\end_layout
+
+\end_inset
+
+していますので，インストールして
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+り|よう
+\end_layout
+
+\end_inset
+
+利用
+\end_layout
+
+\end_inset
+
+してください。カスタムモジュールのインストール
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+ほう|ほう
+\end_layout
+
+\end_inset
+
+方法
+\end_layout
+
+\end_inset
+
+は
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+こう|しき
+\end_layout
+
+\end_inset
+
+公式
+\end_layout
+
+\end_inset
+
+ドキュメントをご
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+らん
+\end_layout
+
+\end_inset
+
+覧
+\end_layout
+
+\end_inset
+
+いただくか，
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+g
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+じょうき
+\end_layout
+
+\end_inset
+
+上記
+\end_layout
+
+\end_inset
+
+レポジトリのトップにも
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+き|さい
+\end_layout
+
+\end_inset
+
+記載
+\end_layout
+
+\end_inset
+
+しています。なお，この
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+し|りょう
+\end_layout
+
+\end_inset
+
+資料
+\end_layout
+
+\end_inset
+
+のソースファイルは
+\begin_inset Flex 和文ルビ
+status collapsed
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+ぜん|じゅつ
+\end_layout
+
+\end_inset
+
+前述
+\end_layout
+
+\end_inset
+
+のレポジトリの 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "demo/ruby.lyx"
+target "https://github.com/kenjisato/lyx.local/tree/main/LyX/demo"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+です。
+\end_layout
+
+\begin_layout Standard
+ルビのオプションの振る舞いについては，
+\series bold
+pxrubrica
+\series default
+パッケージのドキュメンを確認してください。オプションを使った例は次のようなものです
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+オプション入力欄を出すには， Ctrl+A を入力した後に 1 を押す。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+jruby[g]{百舌鳥}{もず}
+\end_layout
+
+\end_inset
+
+：
+\begin_inset Flex 和文ルビ
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+g
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+もず
+\end_layout
+
+\end_inset
+
+百舌鳥
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+jruby[j]{{百舌鳥}}{もず}
+\end_layout
+
+\end_inset
+
+：
+\begin_inset Flex 和文ルビ
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+j
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+
+もず
+\end_layout
+
+\end_inset
+
+{百舌鳥}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+和文両側ルビ，欧文両側ルビの Flex Inset も一応用意していますが，使用頻度が少なく邪魔に感じる人が少なくなさそうなので，そのうち別モジュールに分けるか
+もしれません。和文両側ルビの使用例です
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "組版コラム Dr.  シローの覚え書き,  259. 両側ルビ"
+target "https://bunkyo-kumihan.com/kumihan_blog/?p=8760"
+literal "false"
+
+\end_inset
+
+ より（2021年3月19日閲覧）。
+\end_layout
+
+\end_inset
+
+：
+\begin_inset Flex 和文両側ルビ
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+ぺきん
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+
+ベイジン
+\end_layout
+
+\end_inset
+
+北京
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex 和文両側ルビ
+status open
+
+\begin_layout Plain Layout
+
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+くだら
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+
+ペクチェ
+\end_layout
+
+\end_inset
+
+百済
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+注意
+\end_layout
+
+\begin_layout Standard
+生成される\SpecialChar LaTeX
+のソースコードに関する注意点です。
+\series bold
+pxrubrica
+\series default
+パッケージの
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+ruby
+\end_layout
+
+\end_inset
+
+（あるいは
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+jruby
+\end_layout
+
+\end_inset
+
+）, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+aruby
+\end_layout
+
+\end_inset
+
+ コマンドは，次の形式で使用されます。
+\end_layout
+
+\begin_layout Quotation
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+*ruby[⟨オプション⟩]{⟨親文字⟩}{⟨ルビ文字⟩}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\SpecialChar LyX
+でFlex Insetを折りたたんだときに表示されるのは最後のパラメータなので
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ContentAsLabel
+\end_layout
+
+\end_inset
+
+ は真に設定されています。
+\end_layout
+
+\end_inset
+
+，編集するときには最後のパラメータが親文字である方が望ましいです。そこで，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+pxrubrica.module
+\end_layout
+
+\end_inset
+
+ では，パラメータの順序を入れ替えたコマンド
+\end_layout
+
+\begin_layout Quotation
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+*rubySwap[⟨オプション⟩]{⟨ルビ文字⟩}{⟨親文字⟩}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+を定義しました。生成される\SpecialChar LaTeX
+コードを汚してしまうのですが，編集上の便利さを選択しました。
+\end_layout
+
+\end_body
+\end_document
