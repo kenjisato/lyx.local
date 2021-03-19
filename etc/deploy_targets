@@ -1,0 +1,13 @@
+######### Directories and files to deploy #########
+# Copy all the files in the following directories to UserDir.
+directories=('layouts' 'templates' 'ui')
+
+# except the following files.
+# sample:
+# exclude=('layouts/dontcopy.inc' 'templates/dontneedit.lyx')
+exclude=()
+
+# Create backups for these important files if an older version exists in UserDir.
+# sample:
+# require_backup=('layouts/makebackup.module' 'templates/bxjsarticle.lyx')
+require_backup=()

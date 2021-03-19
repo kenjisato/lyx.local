@@ -1,4 +1,5 @@
 source etc/config
+source etc/deploy_targetsma
 source etc/util.sh
 
 configure=false

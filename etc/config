@@ -16,19 +16,3 @@ UserDir="${HOME}/Library/Application Support/LyX-${VERSION}"
 #
 #
 #
-
-######### Directories and files #########
-# Copy all the files in the following directories to UserDir.
-directories=('layouts' 'templates' 'ui')
-
-# except the following files.
-exclude=()
-
-# sample:
-# exclude=('layouts/dontcopy.inc')
-
-# Create backups for these important files if an older version exists in UserDir.
-require_backup=()
-
-# sample:
-# require_backup=('layouts/makebackup.module' 'templates/bxjsarticle.lyx')
