@@ -8,16 +8,19 @@ cd LyX
 
 for d in "${directories[@]}"
 do
+  echo "$d/"
   for from in $d/*
   do
     [ -e "$from" ] || continue
     if is_in "$from" "${exclude[@]}"; then
+      echo ..... Skipping "$from" : List \'exclude\' contains it.
       continue
     fi
     dest="$UserDir/$from"
     if [ -e "$dest" ]; then
       newfile=$(find "$dest" -newer $from -print)
       if [ -n "$newfile" ]; then
+        echo ..... Skipping "$from" : File in UserDir is newer.
         continue
       fi
 
@@ -27,8 +30,8 @@ do
         echo backup created: "$dest-$dt"
       fi
     fi
-    echo Copying... "$from"
     cp "$from" "$dest"
+    echo ..... Deploy "$from"
     configure=true
   done
 done
@@ -36,7 +39,13 @@ done
 cd "$current"
 
 if "$configure"; then
-  echo You must run "make reconfigure" to let LyX know the changes.
+  echo
+  echo Next step: To let LyX know the changes, you must run
+  echo
+  echo "    make reconfigure"
+  echo
 else
+  echo
   echo Nothing to deploy.
+  echo 
 fi

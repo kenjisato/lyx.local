@@ -4,7 +4,10 @@ is_in() {
   local arr=("$@")
   for i in "${arr[@]}"
   do
-    [[ "$element" == "$i" ]] && return 0
+    case $element in
+      $i) return 0 ;;
+      *) ;;
+    esac
   done
   return 1
 }

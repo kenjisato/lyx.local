@@ -5,7 +5,7 @@ directories=('bind' 'clipart' 'doc' 'examples' 'images' 'kbd' 'layouts'
 
 # except the following files.
 # sample:
-# exclude=('layouts/dontcopy.inc' 'templates/dontneedit.lyx')
+# exclude=('layouts/dontcopy.inc' 'doc/*.lyx')
 exclude=()
 
 # Create backups for these important files if an older version exists in UserDir.

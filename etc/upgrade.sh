@@ -21,7 +21,13 @@ done
 
 cd "$current"
 if "$configure"; then
-  echo You must run "make deploy reconfigure" to deploy and then to let LyX know the changes.
+  echo
+  echo Next step: To let LyX know the changes, you must run
+  echo
+  echo "    make reconfigure"
+  echo
 else
-  echo Nothing to upgrade.
+  echo
+  echo Nothing to deploy.
+  echo
 fi
