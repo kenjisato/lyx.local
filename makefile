@@ -32,6 +32,6 @@ $(demo_pdf): %.pdf: %.lyx
 # Clean up
 .PHONY: clean
 clean:
-	rm demo/*.lyx~
-	rm LyX/templates/*.lyx~
+	rm -f demo/*.lyx~
+	rm -f LyX/templates/*.lyx~
 	find . -name '.DS_Store' -type f -delete
