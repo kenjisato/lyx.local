@@ -84,7 +84,7 @@ case "$platform" in
   cygwin*)  cygwin_init;;
   wsl*)     wsl_init;;
   unknown*) unknown_init;;
-  *)
+  *)        ;;
 esac
 
 verify_cfg "$cfg"

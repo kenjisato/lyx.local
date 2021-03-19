@@ -1,18 +1,19 @@
 # Makefile to deploy lyx.local
-include etc/config
 
 .PHONY: all
 all:
 	@echo To deploy run:  make deploy
 
 # Initialize
+init: etc/config
+
 etc/config:
-	@echo Creating....
+	@echo Initializing....
 	@bash etc/init.sh
 
 # Copy to UserDir.
-.PHONY: deploy
 deploy:
+	@echo Deploying....
 	@bash etc/deploy.sh
 
 # Reflect changes in UserDir.

@@ -1,5 +1,20 @@
-source etc/config
 source etc/util.sh
+
+if [ -e "etc/config" ]; then
+  message=$(verify_cfg "etc/config")
+  if [ $? -eq 0 ]; then
+    source "etc/config"
+  else
+    echo "$message"
+    exit 1
+  fi
+else
+  echo "Error: 'etc/config' does not exist. First, run "
+  echo
+  echo "    make init"
+  echo
+  exit 1
+fi
 
 configure=false
 current=$(pwd)
