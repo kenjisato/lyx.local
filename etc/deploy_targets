@@ -1,6 +1,7 @@
 ######### Directories and files to deploy #########
 # Copy all the files in the following directories to UserDir.
-directories=('layouts' 'templates' 'ui')
+directories=('bind' 'clipart' 'doc' 'examples' 'images' 'kbd' 'layouts'
+             'scripts' 'templates' 'ui')
 
 # except the following files.
 # sample:
