@@ -49,7 +49,7 @@ verify_cfg() {
 
   source "$1"
   success=true
-  
+
   if [ ! -e "$Python" ]; then
     echo ✗ Python: FATAL! I cannot find Python.
     success=false
@@ -84,7 +84,7 @@ verify_cfg() {
     return 0
   else
     echo Sorry, config verication failed. Please manually edit 'etc/config'.
-    echo "   Python .... path to Python 2.7.x"
+    echo "   Python .... path to Python 2.7 or 3.5+"
     echo "   LyX    .... path to LyX application"
     echo "   LyXDir .... path to LyX's system directory"
     echo "   UserDir.... path to LyX's user directory"
