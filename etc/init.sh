@@ -33,7 +33,7 @@ msys_init() {
   echo UserDir="/c/Users/${USER}/AppData/Roaming/LyX$VERSION"
 }
 
-wsl_init() {
+cygwin_init() {
   path_prexif="/cygdrive/c/Users/${USER}/AppData/Roaming/LyX"
   VERSION=$(find_latest_version "$path_prefix")
   echo Python="/cygdrive/c/Program Files/LyX $VERSION/python/python.exe"
@@ -43,12 +43,13 @@ wsl_init() {
 }
 
 wsl_init() {
-  path_prexif="/mnt/c/Users/${USER}/AppData/Roaming/LyX"
+  win_user=$(powershell.exe '$env:UserName')
+  path_prexif="/mnt/c/Users/${win_user}/AppData/Roaming/LyX"
   VERSION=$(find_latest_version "$path_prefix")
   echo Python="/mnt/c/Program Files/LyX $VERSION/python/python.exe"
   echo LyX="/mnt/c/Program Files/LyX $VERSION/bin/LyX.exe"
   echo LyXDir="/mnt/c/Program Files/LyX $VERSION/Resources"
-  echo UserDir="/mnt/c/Users/${USER}/AppData/Roaming/LyX$VERSION"
+  echo UserDir="/mnt/c/Users/${win_user}/AppData/Roaming/LyX$VERSION"
 }
 
 unknown_init() {
