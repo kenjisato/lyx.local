@@ -1,4 +1,5 @@
 source etc/util.sh
+source etc/verify.sh
 
 if [ -e "etc/config" ]; then
   message=$(verify_cfg "etc/config")

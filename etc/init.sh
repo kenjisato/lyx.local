@@ -1,11 +1,12 @@
 source etc/util.sh
+source etc/verify.sh
 
 cfg=etc/config
 
 if [ -e "$cfg" ]; then
-  echo \'etc/config\' already exists. Abort the operation.
-  echo If you need to change configurations, please delete or manually edit it.
-  exit 1
+  warn "'etc/config' already exists. Abort the operation."
+  warn "If you need to change configurations, please delete or manually edit the file."
+  exit 0
 fi
 
 linux_init() {
@@ -54,32 +55,15 @@ wsl_init() {
 }
 
 unknown_init() {
-  echo Python=
-  echo LyX=
-  echo LyXDir=
-  echo UserDir
+  echo Python= > $cfg
+  echo LyX= >> $cfg
+  echo LyXDir= >> $cfg
+  echo UserDir >> $cfg
   echo
-  echo I don\'t know what to do. Please manually edit \'etc/config\'!
+  warn "I don't know what to do. Please manually edit 'etc/config'!"
 }
 
-kernel_name="$(uname -s)"
-kernel_release="$(uname -r)"
-
-case "${kernel_name}" in
-  Linux*)     platform=linux;;
-  Darwin*)    platform=mac;;
-  CYGWIN*)    platform=cygwin;;
-  MINGW*)     platform=msys;;
-  MSYS*)      platform=msys;;
-  *)          platform=unknown;;
-esac
-
-case "${kernel_release}" in
-  *microsoft*)  platform=wsl;;
-  *)            ;;
-esac
-
-case "$platform" in
+case "$(get_platform)" in
   linux*)   linux_init;;
   mac*)     mac_init;;
   msys*)    msys_init;;

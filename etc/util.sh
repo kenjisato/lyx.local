@@ -1,3 +1,12 @@
+warn() {
+  echo $(tput setaf 9)$@$(tput sgr0)
+}
+
+praise() {
+  echo $(tput setaf 2)$@$(tput sgr0)
+}
+
+
 is_in() {
   local element="$1"
   shift
@@ -38,56 +47,35 @@ find_latest_version() {
     sed -n -e '1p'
 }
 
-verify_cfg() {
-  if [ ! -e "$1" ]; then
-    echo "$1" does not exist.
-    return 1
-  fi
-  python_required=('2.7.*' '3.5.*' '3.6.*' '3.7.*' '3.8.*' '3.9.*')
-  lyxdir_needs=configure.py
-  userdir_needs=configure.log
+get_platform() {
+  local platform
+  local kernel_name="$(uname -s)"
+  local kernel_release="$(uname -r)"
 
-  source "$1"
-  success=true
+  case "${kernel_name}" in
+    Linux*)     platform=linux;;
+    Darwin*)    platform=mac;;
+    CYGWIN*)    platform=cygwin;;
+    MINGW*)     platform=msys;;
+    MSYS*)      platform=msys;;
+    *)          platform=unknown;;
+  esac
 
-  if [ ! -e "$Python" ]; then
-    echo ✗ Python: FATAL! I cannot find Python.
-    success=false
-  else
-    python_version=$("$Python" -c "import platform; print(platform.python_version())")
-    if is_in "$python_version" "${python_required[@]}"; then
-      echo ✔ Python: version is $python_version.
-    else
-      echo ✗  Python: WARNING! Python 2 \> 2.7 or 3 \> 3.5 is expected. You have $python_version.
-      success=false
-    fi
-  fi
+  case "${kernel_release}" in
+    *microsoft*)  platform=wsl;;
+    *)            ;;
+  esac
 
-  if [ -e "$LyXDir/$lyxdir_needs" ]; then
-    echo ✔ LyXDir: contains \'$lyxdir_needs\'.
-  else
-    echo ✗ LyXDir: FATAL! Your \<LyXDir\> does not contain \'$lyxdir_needs\'.
-    succes=false
-  fi
+  echo $platform
+}
 
-  if [ -e "$UserDir"/"$userdir_needs" ]; then
-    echo ✔ UserDir: contains \'$userdir_needs\'.
-  else
-    echo ✗ UserDir: WARNING! Your \<UserDir\> does not contain \'"$userdir_needs"\'.
-    echo "    I am not sure whether your configurations are intentional."
-    echo "    Running '$userdir_needs' in the <UserDir> you specify could end up with"
-    echo "    a VERY unpleasant situation. So, I do not proceed. If you think this"
-    echo "    is the right place, please run LyX in there before using my scripts."
-    success=false
-  fi
-  if "${success}"; then
-    return 0
-  else
-    echo Sorry, config verication failed. Please manually edit 'etc/config'.
-    echo "   Python .... path to Python 2.7 or 3.5+"
-    echo "   LyX    .... path to LyX application"
-    echo "   LyXDir .... path to LyX's system directory"
-    echo "   UserDir.... path to LyX's user directory"
-    return 1
-  fi
+fix_windir() {
+  local fixed_path
+  local input="$@"
+  case $(get_platform) in
+    wsl*)     fixed_path=$(echo $input | sed "s%^/mnt/c%C:%" ) ;;
+    cygwin*)  fixed_path=$(echo $input | sed "s%^/cygdrive/c%C:%" ) ;;
+    *)        fixed_path=$(echo $input ) ;;
+  esac
+  echo $fixed_path
 }

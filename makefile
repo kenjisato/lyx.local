@@ -5,13 +5,13 @@ all:
 	@echo To deploy run:  make deploy
 
 # Initialize
-init: etc/config
-
-etc/config:
+.PHONY: init
+init:
 	@echo Initializing....
 	@bash etc/init.sh
 
 # Copy to UserDir.
+.PHONY: init
 deploy:
 	@echo Deploying....
 	@bash etc/deploy.sh

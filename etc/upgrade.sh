@@ -1,25 +1,24 @@
 source etc/util.sh
+source etc/verify.sh
 
 if [ -e "etc/config" ]; then
   message=$(verify_cfg "etc/config")
   if [ $? -eq 0 ]; then
     source "etc/config"
   else
-    echo "$message"
+    warn "$message"
     exit 1
   fi
 else
-  echo "Error: 'etc/config' does not exist. First, run "
-  echo
-  echo "    make init"
-  echo
+  warn "Error: 'etc/config' does not exist. First, run "
+  warn
+  warn "    make init"
+  warn
   exit 1
 fi
 
-# Path fixation for WSL
-LyXDirFix=$(echo "$LyXDir" | sed "s%^/mnt/c%C:%" )
-# Path fixation for Cygwin
-LyXDirFix=$(echo "$LyXDirFix" | sed "s%^/cygdrive/c%C:%" )
+# Path fixation for WSL and Cygwin
+LyXDirFix=$(fix_windir "$LyXDir")
 
 configure=false
 current=$(pwd)
