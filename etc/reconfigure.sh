@@ -7,5 +7,7 @@ fi
 
 current=$(pwd)
 cd "$UserDir"
-"$Python" "$LyXDir/configure.py"
+# Path fixation for WSL
+LyXDirFix=$(echo "$LyXDir" | sed "s%^/mnt/c%C:%" )
+"$Python" "$LyXDirFix/configure.py"
 cd "$current"

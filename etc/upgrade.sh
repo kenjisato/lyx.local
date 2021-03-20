@@ -16,6 +16,9 @@ else
   exit 1
 fi
 
+# Path fixation for WSL
+LyXDirFix=$(echo "$LyXDir" | sed "s%^/mnt/c%C:%" )
+
 configure=false
 current=$(pwd)
 cd LyX
@@ -23,7 +26,7 @@ cd LyX
 for f in layouts/*
 do
   [ -e "$f" ] || continue
-  "$Python" "$LyXDir/scripts/layout2layout.py" $f $f.temp
+  "$Python" "$LyXDirFix/scripts/layout2layout.py" $f $f.temp
 
   diff -s $f $f.temp > /dev/null 2>&1
   if [ $? -eq 0 ]; then

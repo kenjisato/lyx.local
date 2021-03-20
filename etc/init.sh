@@ -25,31 +25,32 @@ mac_init() {
 }
 
 msys_init() {
-  path_prexif="/c/Users/${USER}/AppData/Roaming/LyX"
+  path_prefix="/c/Users/${USER}/AppData/Roaming/LyX"
   VERSION=$(find_latest_version "$path_prefix")
-  echo Python="/c/Program Files/LyX $VERSION/python/python.exe"
-  echo LyX="/c/Program Files/LyX $VERSION/bin/LyX.exe"
-  echo LyXDir="/c/Program Files/LyX $VERSION/Resources"
-  echo UserDir="/c/Users/${USER}/AppData/Roaming/LyX$VERSION"
+  echo Python=\"/c/Program Files/LyX $VERSION/python/python.exe\" > $cfg
+  echo LyX=\"/c/Program Files/LyX $VERSION/bin/LyX.exe\" >> $cfg
+  echo LyXDir=\"/c/Program Files/LyX $VERSION/Resources\" >> $cfg
+  echo UserDir=\"/c/Users/${USER}/AppData/Roaming/LyX$VERSION\" >> $cfg
 }
 
 cygwin_init() {
-  path_prexif="/cygdrive/c/Users/${USER}/AppData/Roaming/LyX"
-  VERSION=$(find_latest_version "$path_prefix")
-  echo Python="/cygdrive/c/Program Files/LyX $VERSION/python/python.exe"
-  echo LyX="/cygdrive/c/Program Files/LyX $VERSION/bin/LyX.exe"
-  echo LyXDir="/cygdrive/c/Program Files/LyX $VERSION/Resources"
-  echo UserDir="/cygdrive/c/Users/${USER}/AppData/Roaming/LyX$VERSION"
+  path_prefix="/cygdrive/c/Users/${USER}/AppData/Roaming/LyX"
+  VERSION=$(find_latest_version "$path_prefix") > $cfg
+  echo Python=\"/cygdrive/c/Program Files/LyX $VERSION/python/python.exe\" >> $cfg
+  echo LyX=\"/cygdrive/c/Program Files/LyX $VERSION/bin/LyX.exe\" >> $cfg
+  echo LyXDir=\"/cygdrive/c/Program Files/LyX $VERSION/Resources\" >> $cfg
+  echo UserDir=\"/cygdrive/c/Users/${USER}/AppData/Roaming/LyX$VERSION\" >> $cfg
 }
 
 wsl_init() {
-  win_user=$(echo $(powershell.exe '$env:UserName') | sed "s%\r%%g")
-  path_prexif="/mnt/c/Users/${win_user}/AppData/Roaming/LyX"
+  win_user=$(powershell.exe '$env:UserName')
+  win_user=$(echo $win_user | sed "s%\r%%g")
+  path_prefix="/mnt/c/Users/${win_user}/AppData/Roaming/LyX"
   VERSION=$(find_latest_version "$path_prefix")
-  echo Python="/mnt/c/Program Files/LyX $VERSION/python/python.exe"
-  echo LyX="/mnt/c/Program Files/LyX $VERSION/bin/LyX.exe"
-  echo LyXDir="/mnt/c/Program Files/LyX $VERSION/Resources"
-  echo UserDir="/mnt/c/Users/${win_user}/AppData/Roaming/LyX$VERSION"
+  echo Python=\"/mnt/c/Program Files/LyX $VERSION/python/python.exe\" > $cfg
+  echo LyX=\"/mnt/c/Program Files/LyX $VERSION/bin/LyX.exe\" >> $cfg
+  echo LyXDir=\"/mnt/c/Program Files/LyX $VERSION/Resources\" >> $cfg
+  echo UserDir=\"/mnt/c/Users/${win_user}/AppData/Roaming/LyX$VERSION\" >> $cfg
 }
 
 unknown_init() {
