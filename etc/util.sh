@@ -39,14 +39,14 @@ find_latest_version() {
 }
 
 verify_cfg() {
-  python_required=2.7
+  python_required=('2.7.*' '3.5.*' '3.6.*' '3.7.*' '3.8.*' '3.9.*')
   lyxdir_needs=configure.py
   userdir_needs=configure.log
 
   source $1
   success=true
   python_version=$($Python -c "import platform; print(platform.python_version())")
-  if [[ "$python_version" = "$python_required."* ]]; then
+  if is_in "$python_version" "${python_required[@]}"; then
     echo ✔ Python: version is $python_version.
   else
     echo ✗ Python: WARNING! Python "$python_required".x is expected. You have $python_version.

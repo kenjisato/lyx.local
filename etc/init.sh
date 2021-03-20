@@ -9,7 +9,7 @@ if [ -e "$cfg" ]; then
 fi
 
 linux_init() {
-  echo Python=/usr/bin/python2 > $cfg
+  echo Python="$(which python)" > $cfg
   echo LyX=/usr/bin/lyx >> $cfg
   echo LyXDir=/usr/share/lyx >> $cfg
   echo UserDir=${Home}/.lyx >> $cfg
@@ -18,7 +18,7 @@ linux_init() {
 mac_init() {
   path_prefix="${HOME}/Library/Application Support/LyX-"
   VERSION=$(find_latest_version "$path_prefix")
-  echo Python=/usr/bin/python > $cfg
+  echo Python="$(which python)" > $cfg
   echo LyX=/Applications/LyX.app/Contents/MacOS/lyx >> $cfg
   echo LyXDir=/Applications/LyX.app/Contents/Resources >> $cfg
   echo UserDir=\"${HOME}/Library/Application Support/LyX-${VERSION}\" >> $cfg
