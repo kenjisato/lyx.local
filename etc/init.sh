@@ -43,7 +43,7 @@ cygwin_init() {
 }
 
 wsl_init() {
-  win_user=$(powershell.exe '$env:UserName')
+  win_user=$(echo $(powershell.exe '$env:UserName') | sed "s%^M%%g")
   path_prexif="/mnt/c/Users/${win_user}/AppData/Roaming/LyX"
   VERSION=$(find_latest_version "$path_prefix")
   echo Python="/mnt/c/Program Files/LyX $VERSION/python/python.exe"
