@@ -9,7 +9,7 @@ LyX customization files to make my life easier. With this tool I (and possibly y
 
 ## 1. Download and initialize
 
-I assume that you have LyX and `bash`. `git` and `make` are recommended but optional. (You can download ZIP instead of `git clone`. Make commands `make init`, for instance, is just an alias for `bash etc/init.sh`. )
+I assume that you have LyX and `bash`. `git` and `make` are recommended but optional. (You can download ZIP instead of `git clone`. `make init` is just and alias for `bash etc/init.sh`, `make deploy` for `bash etc/deploy.sh`, etc.)
 
 If you are on Microsoft Windows, use WSL, MSYS2, MINGW, or Cygwin, though not fully tested on these platforms.
 
@@ -23,6 +23,8 @@ make init
 ```
 
 If you are asked to do so, check `etc/config` file. Since your system and/or application layout are not supported, automatic initialization failed. You must properly define variables `Python`, `LyX`, `LyXDir`, and `UserDir`.
+
+MS Windows users don't need to install Python yourself, though it's very useful. LyX's Windows binary is shipped with it.
 
 ## 2. Modify
 
@@ -92,4 +94,21 @@ Place a LyX file there and you can compile it to PDF by running
 make demo
 ```
 
-You feel comfortable with the behavior of your modules and layouts someday. Then, move the demo LyX file to `LyX/doc` directory. By doing so, you can open the document from within LyX.
+This command compiles each LyX file in `demo` directory when the final PDF output is missing or older than the source file. By default the converter format is set to `pdf5`, i.e., the PDF file is created with LuaTeX. If you want to use pdflatex, then
+
+```
+make demo FORMAT=pdf2
+```
+
+For your information, LyX understands the following PDF formats:
+
+- `pdf` (ps2pdf)
+- `pdf2` (pdflatex)
+- `pdf3` (dvipdfm)
+- `pdf4` (xetex)
+- `pdf5` (luatex)
+
+You may desire to make pdflatex the default driver. Then, please edit your local `makefile` at the line defining `FORMAT` variable.
+
+**What's next?**
+Someday, you feel comfortable with the behavior of your modules and layouts. Then, move the demo LyX file to `LyX/doc` directory. By doing so, you can open the document from within LyX.

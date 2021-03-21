@@ -27,12 +27,15 @@ upgrade:
 	@bash etc/upgrade.sh
 
 # Compile demo files.
+FORMAT := pdf5
+-include etc/config
+
 demo_lyx := $(wildcard demo/*.lyx)
 demo_pdf := $(demo_lyx:.lyx=.pdf)
 
 demo: $(demo_pdf);
 $(demo_pdf): %.pdf: %.lyx
-	$(LyX) --export-to pdf5 $@ $<
+	$(LyX) --export-to $(FORMAT) $@ $<
 
 
 # Clean up
