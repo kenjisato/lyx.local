@@ -19,7 +19,7 @@ InsetLayout  "Flex:和文ルビ"
       LabelString "オプション"
       Mandatory   0
       AutoInsert	0
-      PassTrhu    true
+      PassThru    true
     EndArgument
     Argument 2
       LabelString "ルビ"
@@ -46,13 +46,13 @@ InsetLayout  "Flex:欧文ルビ"
       LabelString "オプション"
       Mandatory   0
       AutoInsert	0
-      PassTrhu    true
+      PassThru    true
     EndArgument
     Argument 2
       LabelString "ルビ"
       Mandatory   1
       AutoInsert  1
-      PassTrhu    true
+      PassThru    true
     EndArgument
     Decoration  classic
     LabelString 欧文ルビ
@@ -72,20 +72,20 @@ InsetLayout  "Flex:和文両側ルビ"
       LabelString "オプション"
       Mandatory   0
       AutoInsert	0
-      PassTrhu    true
+      PassThru    true
     EndArgument
     Argument 2
       LabelString "ルビ1"
       Mandatory   1
       AutoInsert  1
-      PassTrhu    true
+      PassThru    true
       ToolTip			"注意! ルビ2を手動で追加してください。"
     EndArgument
     Argument 3
       LabelString "ルビ2"
       Mandatory   1
       AutoInsert  1
-      PassTrhu    true
+      PassThru    true
     EndArgument
     Decoration  classic
     LabelString 和文両側ルビ
@@ -105,19 +105,19 @@ InsetLayout  "Flex:欧文両側ルビ"
       LabelString "オプション"
       Mandatory   0
       AutoInsert	0
-      PassTrhu    true
+      PassThru    true
     EndArgument
     Argument 2
       LabelString "ルビ1"
       Mandatory   1
       AutoInsert  1
-      PassTrhu    true
+      PassThru    true
     EndArgument
     Argument 3
       LabelString "ルビ2"
       Mandatory   1
       AutoInsert  1
-      PassTrhu    true
+      PassThru    true
     EndArgument
     Decoration  classic
     LabelString 欧文両側ルビ
@@ -137,7 +137,7 @@ InsetLayout  "Flex:圏点"
       LabelString "オプション"
       Mandatory   0
       AutoInsert	0
-      PassTrhu    true
+      PassThru    true
     EndArgument
     Decoration  classic
     LabelString 圏点

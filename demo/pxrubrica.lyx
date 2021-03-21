@@ -5,9 +5,6 @@
 \save_transient_properties true
 \origin unavailable
 \textclass bxjsarticle
-\begin_preamble
-\usepackage{luatexja-otf}
-\end_preamble
 \options a4paper,lualatex,ja=standard
 \use_default_options false
 \begin_modules
@@ -602,7 +599,7 @@ literal "false"
 \series bold
 pxrubrica
 \series default
-パッケージのドキュメンを確認してください。オプションを使った例は次のようなものです
+パッケージのドキュメントを確認してください。オプションを使った例は次のようなものです
 \begin_inset Foot
 status open
 
@@ -684,6 +681,7 @@ status open
 status open
 
 \begin_layout Plain Layout
+
 j
 \end_layout
 
@@ -738,6 +736,7 @@ status open
 status open
 
 \begin_layout Plain Layout
+
 ぺきん
 \end_layout
 
@@ -769,6 +768,7 @@ status open
 status open
 
 \begin_layout Plain Layout
+
 くだら
 \end_layout
 
