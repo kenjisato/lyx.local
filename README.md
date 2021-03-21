@@ -112,3 +112,8 @@ You may desire to make pdflatex the default driver. Then, please edit your local
 
 **What's next?**
 Someday, you feel comfortable with the behavior of your modules and layouts. Then, move the demo LyX file to `LyX/doc` directory. By doing so, you can open the document from within LyX.
+
+## Wish list
+
+- Provide a way to delete a corresponding file in `UserDir` when a local development version is renamed.
+- Write some more layout and module files.
