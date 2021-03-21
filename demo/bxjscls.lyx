@@ -1,0 +1,727 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass bxjsarticle
+\options a4paper,lualatex,ja=standard
+\use_default_options false
+\begin_modules
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\series bold
+BXjscls
+\end_layout
+
+\begin_layout Subtitle
+\SpecialChar LyX
+ 用レイアウトファイル
+\end_layout
+
+\begin_layout Date
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+和暦
+\backslash
+today
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+佐藤 健治
+\begin_inset Newline newline
+\end_inset
+
+kenjisato.jp
+\end_layout
+
+\begin_layout Abstract
+\SpecialChar LyX
+ 2.3.6が提供する
+\series bold
+BXjscls
+\series default
+のサポートには改善するべきところが大きいように思える。しかしながら，\SpecialChar LyX
+ のデフォルト・レイアウトを変えてくれというほどのこともないので，ひとまずユーザーレベルで解
+決できることを模索する。
+\end_layout
+
+\begin_layout Section
+はじめに
+\end_layout
+
+\begin_layout Standard
+八登崇之氏による
+\series bold
+BXjscls
+\series default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+八登崇之「BXjs パッケージ（BXJS文書クラス集）ユーザマニュアル」v2.5 (2021/02/02), 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/zr-tex8r/BXjscls/blob/master/bxjscls-manual.pdf
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+を日本語文献を書く際に利用するレイアウトファイルを紹介します。2021年3月21日現在，\SpecialChar LyX
+ 2.3.6にはKoji Yokota 氏が作成した基本的なレイアウトがイン
+ストールされており，
+\series bold
+BXjscls
+\series default
+を使った日本語文書作成が可能になっています。しかし残念ながら，
+\series bold
+jsclass
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+奥村晴彦「p\SpecialChar LaTeX2e
+ 新ドキュメントクラス」（2020/10/09）
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/texjporg/jsclasses/blob/master/jsclasses.pdf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\series default
+ や 
+\series bold
+BXjscls
+\series default
+ で導入されたコマンドは\SpecialChar LyX
+のUIからは利用できません（2021年3月21日現在）。
+\begin_inset Flex Strong
+status open
+
+\begin_layout Plain Layout
+基本的な使用についてはなんら問題ないと思いますが
+\end_layout
+
+\end_inset
+
+，私を含めて一部のユーザーにとっては次のコマンド・環境が不足していることに不満を持つ人がいるかも知れません。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+subtitle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+abstract
+\end_layout
+
+\end_inset
+
+ 環境
+\end_layout
+
+\begin_layout Standard
+この問題を解決するためのカスタムレイアウトファイルをGitHubレポジトリ
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "kenjisato/lyx.local"
+target "https://github.com/kenjisato/lyx.local"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ で公開していますので，インストールしてご利用ください。インストール方法は公式ドキュメントをご覧いただくか，上記レポジトリのトップにも記載しています。なお，この
+資料のソースファイルは前述のレポジトリの 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "demo/bxjscls.lyx"
+target "https://github.com/kenjisato/lyx.local/tree/main/LyX/demo"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+です。この文書自体もそのレイアウトファイルを提供した上で\SpecialChar LyX
+を使って作成しました。サブタイトルと概要が問題なく出力されていて，そのためにERTや特殊なプリアンブルの
+定義をしていないことを確認いただけると思います。 
+\end_layout
+
+\begin_layout Subsection*
+注意
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+bxjsreport
+\series default
+ クラスにおいて，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+abstract
+\end_layout
+
+\end_inset
+
+環境と
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+chapterabstract
+\end_layout
+
+\end_inset
+
+環境は同一ではありませんが，現在は
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+abstract
+\end_layout
+
+\end_inset
+
+環境に対するレイアウトのみ定義しています。したがって，
+\series bold
+bxjsreport
+\series default
+ クラスを使用した特定のケースにおいて問題が生じる可能性があります。いずれ対応します。
+\end_layout
+
+\begin_layout Section
+その他
+\end_layout
+
+\begin_layout Standard
+強調のための 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+strong
+\end_layout
+
+\end_inset
+
+と
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+strongenv
+\end_layout
+
+\end_inset
+
+ 環境についても，さしあたり簡単なレイアウト定義を行いました。しかし，私は Logical Markup モジュールを愛用しているので
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+strong
+\end_layout
+
+\end_inset
+
+は重複しているし，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+strongenv
+\end_layout
+
+\end_inset
+
+ 環境については完全に美しいレイアウト定義には至っておらず，あまり満足の行く状況ではありません。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+strong
+\end_layout
+
+\end_inset
+
+の方はよいとしても
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+strongenv
+\end_layout
+
+\end_inset
+
+ 環境については技術的に困難な部分があります。この環境は単独で段落を構成することが前提条件となっていないので，段落の途中から階段を改めることなく強調された文章を
+始めることができます。さらに，その文章は段落をまたぐことができます。私はこのようなスタイルを\SpecialChar LyX
+で実現する方法を未だに見つけられていません。結果的に，以下の2つから
+対応を選択するという状況になってしまいました。
+\end_layout
+
+\begin_layout Itemize
+この環境に包まれたテキストが1つまたは複数の段落の全体を成すことを仮定する。
+\end_layout
+
+\begin_layout Itemize
+この環境の前後や途中に改段落が必要な場合は ERT で
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+par
+\end_layout
+
+\end_inset
+
+ を挿入する。
+\end_layout
+
+\begin_layout Standard
+いずれにせよあまり美しいものではありませんが，後者の方が制約が少ないということもあり，現状は後者の方針となっています。（
+\begin_inset Flex Strong
+status open
+
+\begin_layout Plain Layout
+何より私は ERT が嫌いではありません。
+\end_layout
+
+\end_inset
+
+）
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+以下，取ってつけたような例ですが，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+strongenv
+\end_layout
+
+\end_inset
+
+ 環境の使用サンプルです。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+par
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Strongenv
+こんな夢を見た。
+\end_layout
+
+\begin_layout Strongenv
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+par
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Strongenv
+腕組をして枕元に坐っていると、仰向に寝た女が、静かな声でもう死にますと云う。女は長い髪を枕に敷いて、輪郭の柔らかな瓜実顔をその中に横たえている。真白な頬の底に温
+かい血の色がほどよく差して、唇の色は無論赤い。とうてい死にそうには見えない。しかし女は静かな声で、もう死にますと判然云った。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+par
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+texttt{あいうえお}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+さらにマイナーな話題
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+jsclass
+\series default
+ で導入されている
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+和暦
+\end_layout
+
+\end_inset
+
+，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+西暦
+\end_layout
+
+\end_inset
+
+ コマンドは
+\series bold
+BXjscls
+\series default
+でも使用できます。現状，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+を日本語ドキュメントクラスで実行すると
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+today{}
+\end_layout
+
+\end_inset
+
+のような西暦表示になりますが，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+和暦{
+\backslash
+today}
+\end_layout
+
+\end_inset
+
+のようにすれば
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+和暦{
+\backslash
+today}
+\end_layout
+
+\end_inset
+
+ のように和暦で表示することが可能です。しかし，そもそも\SpecialChar LyX
+は
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+date
+\end_layout
+
+\end_inset
+
+ に対するインターフェースを提供していないようなので
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\SpecialChar LyX
+は編集時点の当日日付をテキストとして挿入するUIを提供していますが，コンパイル時の当日日付を自動的に挿入する
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+コマンドを挿入するUI（ややこしい）は提供していません。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+date
+\end_layout
+
+\end_inset
+
+フィールドを書かなければ自動的にコンパイル時の日付が挿入されますし，コンパイルのたびに変更されても困るから固定日付を書いておくというケースも多いので，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+コマンドの挿入はレアケースということでしょう。
+\end_layout
+
+\end_inset
+
+，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+和暦
+\end_layout
+
+\end_inset
+
+，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+西暦
+\end_layout
+
+\end_inset
+
+コマンドに対応するFlex Insetを作っても
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+today
+\end_layout
+
+\end_inset
+
+を直接入力する必要があります。結局，ほとんど使われることがなさそうな機能でメニューを賑わすよりも，おとなしく ERT を使ってもらう方がいいのかな，と今は感じて
+います。
+\end_layout
+
+\end_body
+\end_document

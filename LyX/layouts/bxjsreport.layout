@@ -14,7 +14,7 @@ Provides japanese 1
 Input report.layout
 
 # Definitions specific to bxjsclass
-Input bxjsclass.inc
+Input bxjscls.inc
 
 ClassOptions
 	Other "autodetect-engine, dvi=dvipdfmx, ja=standard"
