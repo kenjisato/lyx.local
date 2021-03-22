@@ -13,7 +13,7 @@ Preamble
     \usepackage{pxrubrica}
 EndPreamble
 
-InsetLayout  "Flex:和文ルビ"
+InsetLayout  "Flex:ルビ/ 和文"
     LyXType     custom
     Argument 1
       LabelString "オプション"
@@ -40,7 +40,7 @@ InsetLayout  "Flex:和文ルビ"
     EndPreamble
 End
 
-InsetLayout  "Flex:欧文ルビ"
+InsetLayout  "Flex:ルビ/ 欧文"
     LyXType     custom
     Argument 1
       LabelString "オプション"
@@ -66,7 +66,7 @@ InsetLayout  "Flex:欧文ルビ"
     EndPreamble
 End
 
-InsetLayout  "Flex:和文両側ルビ"
+InsetLayout  "Flex:ルビ/ 和文両側"
     LyXType     custom
     Argument 1
       LabelString "オプション"
@@ -99,7 +99,7 @@ InsetLayout  "Flex:和文両側ルビ"
     EndPreamble
 End
 
-InsetLayout  "Flex:欧文両側ルビ"
+InsetLayout  "Flex:ルビ/ 欧文両側"
     LyXType     custom
     Argument 1
       LabelString "オプション"
@@ -131,7 +131,7 @@ InsetLayout  "Flex:欧文両側ルビ"
     EndPreamble
 End
 
-InsetLayout  "Flex:圏点"
+InsetLayout  "Flex:ルビ/ 圏点"
     LyXType     custom
     Argument 1
       LabelString "オプション"

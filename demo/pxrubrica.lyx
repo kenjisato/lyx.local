@@ -96,7 +96,7 @@ kenjisato.jp
 \end_layout
 
 \begin_layout Standard
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -117,7 +117,7 @@ status open
 \end_inset
 
 
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -142,7 +142,7 @@ status open
 pxrubrica
 \series default
 パッケージを
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status open
 
 \begin_layout Plain Layout
@@ -163,7 +163,7 @@ status open
 \end_inset
 
 いてルビおよび
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -184,7 +184,7 @@ status open
 \end_inset
 
 を
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -205,7 +205,7 @@ status open
 \end_inset
 
 した
-\begin_inset Flex 圏点
+\begin_inset Flex ルビ/ 圏点
 status collapsed
 
 \begin_layout Plain Layout
@@ -219,7 +219,7 @@ status collapsed
 status collapsed
 
 \begin_layout Plain Layout
-八登崇之「pxrubrica パッケージ」v1.3d (2021/03/06), 
+八登崇之「pxrubrica パッケージ」v1.3d (2021/03/06),
 \begin_inset Flex URL
 status open
 
@@ -236,7 +236,7 @@ http://tug.ctan.org/language/japanese/pxrubrica/pxrubrica.pdf
 \end_inset
 
 。このドキュメントの
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -258,7 +258,7 @@ status open
 
 には\SpecialChar LyX
 を
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -283,7 +283,7 @@ status open
 pxrubrica
 \series default
 パッケージを
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -304,7 +304,7 @@ status open
 \end_inset
 
 に
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -324,7 +324,7 @@ status open
 
 \end_inset
 
-うためのカスタムモジュール 
+うためのカスタムモジュール
 \begin_inset Flex Code
 status open
 
@@ -335,7 +335,7 @@ pxrubrica.module
 \end_inset
 
 を
-\begin_inset Flex 欧文ルビ
+\begin_inset Flex ルビ/ 欧文
 status collapsed
 
 \begin_layout Plain Layout
@@ -374,7 +374,7 @@ literal "false"
 \end_inset
 
  で
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -395,7 +395,7 @@ status open
 \end_inset
 
 していますので，インストールして
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -416,7 +416,7 @@ status open
 \end_inset
 
 してください。カスタムモジュールのインストール
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -437,7 +437,7 @@ status open
 \end_inset
 
 は
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -458,7 +458,7 @@ status open
 \end_inset
 
 ドキュメントをご
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -479,7 +479,7 @@ status open
 \end_inset
 
 いただくか，
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -511,7 +511,7 @@ status open
 \end_inset
 
 レポジトリのトップにも
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -532,7 +532,7 @@ status open
 \end_inset
 
 しています。なお，この
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -553,7 +553,7 @@ status open
 \end_inset
 
 のソースファイルは
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status collapsed
 
 \begin_layout Plain Layout
@@ -573,7 +573,7 @@ status open
 
 \end_inset
 
-のレポジトリの 
+のレポジトリの
 \begin_inset Flex Code
 status open
 
@@ -625,7 +625,7 @@ jruby[g]{百舌鳥}{もず}
 \end_inset
 
 ：
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status open
 
 \begin_layout Plain Layout
@@ -672,7 +672,7 @@ jruby[j]{{百舌鳥}}{もず}
 \end_inset
 
 ：
-\begin_inset Flex 和文ルビ
+\begin_inset Flex ルビ/ 和文
 status open
 
 \begin_layout Plain Layout
@@ -727,7 +727,7 @@ literal "false"
 \end_inset
 
 ：
-\begin_inset Flex 和文両側ルビ
+\begin_inset Flex ルビ/ 和文両側
 status open
 
 \begin_layout Plain Layout
@@ -758,8 +758,8 @@ status open
 
 \end_inset
 
-, 
-\begin_inset Flex 和文両側ルビ
+,
+\begin_inset Flex ルビ/ 和文両側
 status open
 
 \begin_layout Plain Layout
@@ -827,7 +827,7 @@ jruby
 
 \end_inset
 
-）, 
+）,
 \begin_inset Flex Code
 status open
 
