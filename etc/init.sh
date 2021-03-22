@@ -10,10 +10,12 @@ if [ -e "$cfg" ]; then
 fi
 
 linux_init() {
-  echo Python="$(which python)" > $cfg
+  local Python="$(which python)"
+  [ -z "$Python" ] && Python="$(which python3)"
+  echo Python="$Python" > $cfg
   echo LyX=/usr/bin/lyx >> $cfg
   echo LyXDir=/usr/share/lyx >> $cfg
-  echo UserDir=${Home}/.lyx >> $cfg
+  echo UserDir=${HOME}/.lyx >> $cfg
 }
 
 mac_init() {
