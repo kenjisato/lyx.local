@@ -1,0 +1,169 @@
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{suffix}
+\usepackage{framed}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+
+
+%%
+%% clrmMode:
+%%    teacher -> Show suggested solutions; Hide blank answer boxes.
+%%    student -> Hide suggested solutions; Show blank answer boxes.
+%%    draft   -> Show both.
+%%
+\newcommand\clrmMode{draft}
+\newcommand\setMode[1]{\renewcommand{\clrmMode}{#1}}
+
+\newboolean{showSolution}
+\newboolean{showBlankbox} % Used for AnswerFrame
+
+\newcommand\readMode{%
+  \ifthenelse{\equal{\clrmMode}{teacher}}{%
+    \setboolean{showSolution}{true}%
+    \setboolean{showBlankbox}{false}%
+  }{}%
+  \ifthenelse{\equal{\clrmMode}{student}}{%
+    \setboolean{showSolution}{false}%
+    \setboolean{showBlankbox}{true}%
+  }{}%
+  \ifthenelse{\equal{\clrmMode}{draft}}{%
+    \setboolean{showSolution}{true}%
+    \setboolean{showBlankbox}{true}%
+  }{}%
+}
+
+%%
+%% Fill-in-the-blank Problems
+%%
+\newcounter{blanknum}
+\newlength{\blankboxwidth}
+
+\newcommand\blankboxWriteSolution[1]{\textbf{\large{#1}}}
+\newcommand{\blankbox}[1]{%
+  \refstepcounter{blanknum} %
+  \readMode%
+  \setlength\blankboxwidth{3em+\widthof{\blankboxWriteSolution{#1}}}%
+  \protect\framebox[\blankboxwidth][c]{%
+    (\theblanknum)\ifthenelse{\boolean{showSolution}}{\blankboxWriteSolution{#1}}{}}%
+}
+\WithSuffix\newcommand\blankbox*[3]{%
+  \readMode%
+  \setlength\blankboxwidth{#2+\widthof{#1 }+\widthof{\blankboxWriteSolution{#3}}}%
+  \ifthenelse{\boolean{showSolution}}{%
+    \protect\framebox[\blankboxwidth][c]{\blankboxWriteSolution{#3}}%
+  }{%
+    \protect\framebox[\blankboxwidth][l]{#1\phantom{\blankboxWriteSolution{#3}}}%
+  }%
+}
+
+%%
+%% True or False Questions
+%%
+\newcommand{\TFTrueLabel}{T}
+\newcommand{\TFFalseLabel}{F}
+\newcommand{\TFSolution}[1]{%
+  \ifthenelse{%
+    \equal{#1}{true} \OR \equal{#1}{True} \OR \equal{#1}{T} \OR \equal{#1}{TRUE}%
+  }{%
+    \fbox{\TFTrueLabel}~/~\TFFalseLabel%
+  }{%
+    \TFTrueLabel~/~\fbox{\TFFalseLabel}%
+  }%
+}
+
+\newlength\TFMinipageWidth
+\setlength\TFMinipageWidth{\textwidth-\widthof{\TFTrueLabel / \TFFalseLabel}-6em}
+
+\newcommand{\TFInsert}[1]{%
+  \readMode%
+  \ifthenelse{%
+    \boolean{showSolution}%
+  }{%
+    \TFSolution{#1}%
+  }{%
+    \TFTrueLabel~/~\TFFalseLabel%
+  }%
+}
+
+\newcommand{\tfitem}[2]{%
+  \item \begin{minipage}[t]{\TFMinipageWidth}#2\strut\end{minipage}\hfill\TFInsert{#1}%
+}
+\newlist{TrueOrFalse}{enumerate}{1}
+\setlist[TrueOrFalse]{label=(\arabic*), align=left}
+
+
+%%
+%% Essay Problems
+%%
+\newlength\clrmOuterFrameSep
+\newlength\clrmFrameSep
+\setlength{\clrmOuterFrameSep}{2pt}
+\setlength{\clrmFrameSep}{0pt}
+\def\setFrameLength{
+  \setlength{\OuterFrameSep}{\clrmOuterFrameSep}
+  \setlength{\FrameSep}{\clrmOuterFrameSep}
+}
+\newcommand{\refCommand}[1]{\autoref{#1}}
+
+% ad hoc adjustment of space above innter frame.
+\newlength\clrmInnerFrameSep
+\setlength{\clrmInnerFrameSep}{-5pt}
+
+\newenvironment{outerAnswerFrame}{\begin{framed}}{\end{framed}}
+\newenvironment{innerAnswerFrame}{}{}
+
+\newcounter{answersavedequation}
+
+%%
+%% SolutionFrame for ShowSolution==true
+%%
+\newcommand{\SolutionFrameLabel}{Solution}
+\newcommand{\writeSolutionFrameLabel}[2]{%
+\textbf{\SolutionFrameLabel~(\refCommand{#2}\ifthenelse{\equal{#1}{}}{}{, #1})}
+  % #1 = Optional Text
+  % #2 = cross ref label to the problem.
+}
+
+\newenvironment{SolutionFrame}[2][]% #1=some text (optional), #2=ref
+  {\readMode\ifthenelse{\boolean{showSolution}}{\BeginSolutionFrame[#1]{#2}}{\comment}}%
+  {\ifthenelse{\boolean{showSolution}}{\EndSolutionFrame}{\endcomment}}
+\newcommand\BeginSolutionFrame[2][]{
+ \setcounter{answersavedequation}{\value{equation}}%
+ \setcounter{equation}{0}%
+ \renewcommand{\theequation}{\roman{equation}}%
+ \noindent\writeSolutionFrameLabel{#1}{#2} %
+ \par
+}
+\newcommand\EndSolutionFrame{\qed}
+
+%%
+%% AnswerFrame for ShowSolution==false
+%%
+\newcommand{\AnswerFrameLabel}{Answer}
+\newcommand{\writeAnswerFrameLabel}[1]{%
+  % #1 = cross ref label to the problem.
+  \textbf{\AnswerFrameLabel \ifthenelse{\equal{#1}{}}{}{\mbox{(\refCommand{#1})}}}%
+}
+
+\newcommand{\AnswerFrame}[3][]{ % #1=optional hint text, #2=ref, #3=height (in \baselineskip)
+  \readMode\ifthenelse{\boolean{showBlankbox}}{%
+    \bgroup%
+      \setFrameLength%
+      \vspace{-0.5\baselineskip}%
+      \begin{outerAnswerFrame}
+        \noindent\writeAnswerFrameLabel{#2}
+        \vspace{\clrmInnerFrameSep}
+        \bgroup
+          \setlength\OuterFrameSep{0pt}
+          \begin{innerAnswerFrame}
+            \begin{minipage}[t][#3\baselineskip]{\textwidth}
+              {\small #1}\phantom{ }
+            \end{minipage}
+          \end{innerAnswerFrame}
+        \egroup
+      \end{outerAnswerFrame}
+    \egroup
+  }{}
+}

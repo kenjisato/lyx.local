@@ -40,6 +40,13 @@ verify_cfg() {
     echo "    is the right place, please run LyX in there before using my scripts."
     success=false
   fi
+
+  if [ -d "$TexMfHome" ]; then
+    praise "✔ TexMfHome: TEXMFHOME directory is set."
+  else
+    echo "TexMfHome: TEXMFHOME directory is not set. Ignored."
+  fi
+
   if "${success}"; then
     return 0
   else

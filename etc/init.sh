@@ -16,6 +16,11 @@ linux_init() {
   echo LyX=/usr/bin/lyx >> $cfg
   echo LyXDir=/usr/share/lyx >> $cfg
   echo UserDir=${HOME}/.lyx >> $cfg
+  if ! command -v kpsewhich &> /dev/null; then
+    echo TexMfHome= >> $cfg
+  else
+    echo TexMfHome=$(kpsewhich -var-value TEXMFHOME) >> $cfg
+  fi
 }
 
 mac_init() {
@@ -25,6 +30,11 @@ mac_init() {
   echo LyX=/Applications/LyX.app/Contents/MacOS/lyx >> $cfg
   echo LyXDir=/Applications/LyX.app/Contents/Resources >> $cfg
   echo UserDir=\"${HOME}/Library/Application Support/LyX-${VERSION}\" >> $cfg
+  if ! command -v kpsewhich &> /dev/null; then
+    echo TexMfHome= >> $cfg
+  else
+    echo TexMfHome=$(kpsewhich -var-value TEXMFHOME) >> $cfg
+  fi
 }
 
 msys_init() {
@@ -60,7 +70,7 @@ unknown_init() {
   echo Python= > $cfg
   echo LyX= >> $cfg
   echo LyXDir= >> $cfg
-  echo UserDir >> $cfg
+  echo UserDir= >> $cfg
   echo
   warn "I don't know what to do. Please manually edit 'etc/config'!"
 }

@@ -1,0 +1,170 @@
+#\DeclareLyXModule{lyx.local / Classroom}
+#DescriptionBegin
+#Lyx module for teachers. This module defines several custom insets to help
+#them write course materials and exams.
+#Please download classroom.sty from https://github.com/kenjisato/lyx.local/LaTeX/local
+#and install it under your TEXMFHOME.
+#DescriptionEnd
+#Author : Kenji Sato <mail@kenjisato.jp>
+
+Format 66
+
+Preamble
+  \usepackage{classroom}
+EndPreamble
+
+Counter blanknum
+End
+
+InsetLayout "Flex:CLRM/_Mode"
+  LyXType       custom
+  Decoration    classic
+  LabelString   "Mode (teacher/student/draft)"
+  LatexName     setMode
+  LatexType     command
+  MultiPar        false
+  ContentAsLabel  false
+  PassThru        0
+  LabelFont
+      Size        Small
+  EndFont
+End
+
+InsetLayout  "Flex:CLRM/Blank"
+    LyXType     custom
+    LabelString Blank
+    LatexName   blankbox
+    LatexType   command
+    Counter     blanknum
+    MultiPar        false
+    ContentAsLabel  true
+    LabelFont
+        Size        Small
+    EndFont
+End
+
+InsetLayout  "Flex:CLRM/Blank*"
+    LyXType     custom
+    LabelString Blank*
+    LatexName   blankbox*
+    LatexType   command
+    MultiPar        false
+    ContentAsLabel  true
+    LabelFont
+        Size        Small
+    EndFont
+    Argument 1
+      LabelString "key"
+      Tooltip     "Used as a key when multiple Blank* boxes have the same value and you want to tell the student that."
+      Mandatory   1
+      PassThru    false
+    EndArgument
+    Argument 2
+      Requires    1
+      LabelString "stretch"
+      Tooltip     ""
+      Mandatory   1
+      DefaultArg  3em
+      PassThru    true
+    EndArgument
+End
+
+InsetLayout "Flex:CLRM/AnswerFrame"
+  LyXType       custom
+  Decoration    classic
+  LabelString   "Answer Frame"
+  LatexType   command
+  LatexName   AnswerFrame
+  Argument 1
+    LabelString "Hint"
+    Mandatory   0
+  EndArgument
+  Argument 2
+    LabelString "Ref lbl"
+    Tooltip     "Ref (Label only)"
+    Requires    1
+    AutoInsert  1
+    Mandatory   1
+  EndArgument
+  MultiPar        false
+  ContentAsLabel  false
+  PassThru        0
+  LabelFont
+      Size        Small
+  EndFont
+End
+
+Style SolutionFrame
+	Category         Classroom
+  Margin           First_Dynamic
+  LeftMargin       xx
+	LatexType        Environment
+	LatexName        SolutionFrame
+	NextNoIndent     0
+	ToggleIndent     Always
+  LabelType        Static
+  LabelString      "Solution"
+  LabelSep              xx
+  LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	ParIndent             MM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align            Block
+  Argument 1
+    LabelString     "Additional Text"
+    Tooltip         "Append additional text; for example, Solution (Problem 2, additional text)"
+  EndArgument
+  Argument 2
+    LabelString    "ref"
+    Tooltip        "Enter the reference label"
+    LeftDelim      {
+    RightDelim     }
+    Decoration     conglomerate
+    Font
+  	  Family       Typewriter
+    EndFont
+    AutoInsert     1
+  EndArgument
+  AutoNests
+  	Standard,Itemize,Enumerate
+  EndAutoNests
+End
+
+Style TrueOrFalse
+	Category              Classroom
+	Margin                Static
+	LatexType             Item_Environment
+	LatexName             TrueOrFalse
+	NextNoIndent          1
+	ToggleIndent          Never
+	LeftMargin            MMN
+	LabelSep              xx
+	ParSkip               0.0
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Block, Left
+  ItemCommand           "tfitem"
+  LeftDelim             "{"
+  RightDelim            "}"
+	LabelType             Enumerate
+	LabelCounter          "enum"
+	HTMLTag               ol
+	HTMLItem              li
+	HTMLLabel             NONE
+	RefPrefix             tf
+	Argument item:1
+		LabelString   "true/false"
+		Tooltip       "true/false"
+    Mandatory     1
+    AutoInsert    1
+	EndArgument
+End

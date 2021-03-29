@@ -84,6 +84,20 @@ make deploy reconfigure
 
 Restart LyX and you should see the changes take effect.
 
+### Tips for Mac users
+
+Clicking the red cross button is not enough. Type ⌘Q to properly shut down the app. Or, if don't want to leave Terminal, you may want to use the following command:
+
+```
+osascript -e 'quit app "LyX"'
+```
+
+Then the following command will re-open your demo document.
+
+```
+open demo/yourdemo.lyx
+```
+
 ## 4. Write demos
 
 When you are developing a module or layout file, you should be writing a LyX file for testing. The place for those demos is the `demo` direcory.

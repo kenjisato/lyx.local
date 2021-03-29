@@ -26,6 +26,12 @@ reconfigure:
 upgrade:
 	@bash etc/upgrade.sh
 
+# Deploy custom LaTeX style files.
+.PHONY: texmf
+texmf:
+	@bash etc/texmf.sh
+
+
 # Compile demo files.
 FORMAT := pdf5
 -include etc/config

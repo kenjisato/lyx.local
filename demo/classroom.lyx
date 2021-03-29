@@ -1,0 +1,1606 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass bxjsarticle
+\begin_preamble
+\renewcommand{\AnswerFrameLabel}{解答欄}
+\renewcommand{\SolutionFrameLabel}{解答例}
+\end_preamble
+\options a4paper
+\use_default_options true
+\begin_modules
+classroom
+logicalmkup
+theorems-ams-bytype
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder true
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\branch Solution
+\selected 1
+\filename_suffix 0
+\color #faf0e6
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+draft
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+classroom.module
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+講義資料作成のための\SpecialChar LyX
+拡張
+\end_layout
+
+\begin_layout Author
+佐藤 健治
+\begin_inset Newline newline
+\end_inset
+
+kenjisato.jp
+\end_layout
+
+\begin_layout Standard
+講義資料に付属する練習問題やドリルを書くとき，学生が練習問題に回答するための空欄を作ったり，穴埋め式の資料を作ったりしたい場合がある。講義科目ごとに異なる要望が
+あるし，半期開講の場合1つの授業は1年におよそ4か月しか稼働しないので，翌年の開講のときにはどうやってやるのか忘れている。その都度，場当たり的にERTで作ってい
+ると混乱の元なので，統一的なレイアウトを定義することにした
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+想定以上にスタイルが複雑になったので，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+classroom.module
+\end_layout
+
+\end_inset
+
+のためのスタイル定義を
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+classroom.sty
+\end_layout
+
+\end_inset
+
+というスタイルファイルに分割した。したがって，利用には2つのファイルをインストールする必要がある。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Standard
+このスタイルファイルはあくまでも講義ノートを読解する上での理解力確認用の練習問題や，講義時に配布される講義資料の作成を想定している。解答例を表示する機能を付けて
+いるが，解答例だけを表示する機能はないので，解答例は学生配布用というよりは教員用の「虎の巻」的なものである。このスタイルだけで試験問題や問題集，フィードバック用
+の資料を作成するには機能が不十分である。
+\end_layout
+
+\begin_layout Section
+Custom Insets（差込枠）
+\end_layout
+
+\begin_layout Standard
+以下の Flex Insets を定義している
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM
+\end_layout
+
+\end_inset
+
+というプリフィックスを付けて Custom Insets の一覧の中から探し出しやすいようにしている。
+\end_layout
+
+\end_inset
+
+。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM/_Mode
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM/AnswerFrame
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM/Blank*
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM/Blank
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Insert\SpecialChar menuseparator
+Custom Insets\SpecialChar menuseparator
+CLRM/_Mode
+\end_layout
+
+\begin_layout Standard
+印刷モードを設定するためのコマンド。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+solution
+\end_layout
+
+\end_inset
+
+,
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+problem
+\end_layout
+
+\end_inset
+
+,
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+draft
+\end_layout
+
+\end_inset
+
+の3値のいずれかを指定する。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+: 教員用虎の巻を作成する際に使用する。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+: 学生配布用の資料を配布するときに使用する。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+draft
+\end_layout
+
+\end_inset
+
+: 編集時に使用することを想定している。
+\end_layout
+
+\begin_layout Standard
+それぞれの動作は以下で説明する。
+\end_layout
+
+\begin_layout Subsection*
+Insert\SpecialChar menuseparator
+Custom Insets\SpecialChar menuseparator
+CLRM/AnswerFrame
+\end_layout
+
+\begin_layout Standard
+以下のような解答書き込み用の枠を作ることができる。自動的に挿入される
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Ref lbl
+\end_layout
+
+\end_inset
+
+オプションには対応する問題のラベルを挿入する。デフォルトでは
+\series bold
+Hyperref
+\series default
+パッケージの
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+autoref
+\end_layout
+
+\end_inset
+
+が使用される。解答枠の高さは，空欄の高さは
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+autoref
+\end_layout
+
+\end_inset
+
+の枠の外，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Answer
+\end_layout
+
+\end_inset
+
+枠の内側に記入する。入力した数字は
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+baselineskip
+\end_layout
+
+\end_inset
+
+ を1としたときの比率と解釈されて解答枠の高さが決まる。
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:1"
+
+\end_inset
+
+3以上の任意の自然数
+\begin_inset Formula $n$
+\end_inset
+
+ について，
+\begin_inset Formula $a^{n}+b^{n}=c^{n}$
+\end_inset
+
+ となる整数の組
+\begin_inset Formula $(a,b,c)$
+\end_inset
+
+ が存在しないことを証明しなさい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex CLRM/AnswerFrame
+status open
+
+\begin_layout Plain Layout
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand labelonly
+reference "prob:1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+5
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+%
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+プリアンブルで
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+AnswerFrameLabel
+\end_layout
+
+\end_inset
+
+を再定義すれば枠の左上のテキストを変更できる。デフォルトは Answerとなっているが，この資料では
+\end_layout
+
+\begin_layout Verbatim
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+renewcommand{
+\backslash
+AnswerFrameLabel}{解答欄}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+としている。また，表示方式を変えたいときには
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+writeAnswerFrameLabel
+\end_layout
+
+\end_inset
+
+を変更する。デフォルトは以下のような定義となっている。
+\end_layout
+
+\begin_layout Verbatim
+
+\backslash
+newcommand{
+\backslash
+writeAnswerFrameLabel}[1]{%
+\end_layout
+
+\begin_layout Verbatim
+	  % #1 = cross ref label to the problem.
+\end_layout
+
+\begin_layout Verbatim
+
+\backslash
+textbf{
+\backslash
+AnswerFrameLabel %
+\end_layout
+
+\begin_layout Verbatim
+
+\backslash
+ifthenelse{
+\backslash
+equal{#1}{}}{}{
+\backslash
+mbox{(
+\backslash
+refCommand{#1})}}}%
+\end_layout
+
+\begin_layout Verbatim
+	}
+\end_layout
+
+\begin_layout Standard
+表示を完全に消したいときには，
+\end_layout
+
+\begin_layout Verbatim
+
+\backslash
+renewcommand{
+\backslash
+writeAnswerFrameLabel}[1]{}
+\end_layout
+
+\begin_layout Standard
+とすればよい。もちろんこの場合
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Ref lbl
+\end_layout
+
+\end_inset
+
+を設定する必要はない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+writeAnswerFrameLabel}[1]{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex CLRM/AnswerFrame
+status open
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM/AnswerBox
+\end_layout
+
+\end_inset
+
+ は
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Mode
+\end_layout
+
+\end_inset
+
+ が
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+problem
+\end_layout
+
+\end_inset
+
+ と
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+draft
+\end_layout
+
+\end_inset
+
+の場合のみ表示される。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+solution
+\end_layout
+
+\end_inset
+
+では表示されない。
+\end_layout
+
+\begin_layout Subsection*
+Insert\SpecialChar menuseparator
+Custom Insets\SpecialChar menuseparator
+CLRM/Blank*
+\end_layout
+
+\begin_layout Standard
+穴埋め式のレジュメを配布したい場合がある。学生は出席しないといけない気になるし，授業中にほどよい作業があることで眠気覚ましにもなると期待される。黒板を板書させる
+ことと比べると，講義中の作業が多すぎることで生じる理解不足，それに起因する脱落者の発生を減らすことができるというメリットもあるかもしれない。
+\end_layout
+
+\begin_layout Standard
+穴埋め式とは次のような形式である。
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{student}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quote
+\noindent
+世界で一番高い山は
+\begin_inset Flex CLRM/Blank*
+status open
+
+\begin_layout Plain Layout
+エベレスト
+\end_layout
+
+\end_inset
+
+である。この世界最高峰に登頂成功した初めての日本人は
+\begin_inset Flex CLRM/Blank*
+status open
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+植村直己
+\end_layout
+
+\end_inset
+
+と
+\begin_inset Flex CLRM/Blank*
+status open
+
+\begin_layout Plain Layout
+松浦輝夫
+\end_layout
+
+\end_inset
+
+である。
+\begin_inset Flex CLRM/Blank*
+status open
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+植村直己
+\end_layout
+
+\end_inset
+
+はその年，世界初の五大陸最高峰登頂者となった。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{teacher}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quote
+\noindent
+世界で一番高い山は
+\begin_inset Flex CLRM/Blank*
+status open
+
+\begin_layout Plain Layout
+エベレスト
+\end_layout
+
+\end_inset
+
+である。この世界最高峰に登頂成功した初めての日本人は
+\begin_inset Flex CLRM/Blank*
+status open
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+植村直己
+\end_layout
+
+\end_inset
+
+と
+\begin_inset Flex CLRM/Blank*
+status open
+
+\begin_layout Plain Layout
+松浦輝夫
+\end_layout
+
+\end_inset
+
+である。
+\begin_inset Flex CLRM/Blank*
+status open
+
+\begin_layout Plain Layout
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+植村直己
+\end_layout
+
+\end_inset
+
+はその年，世界初の五大陸最高峰登頂者となった。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+key
+\end_layout
+
+\end_inset
+
+ というオプションパラメータを設定して任意の記号を挿入できる。複数枠に同一の解答が入る場合に，同一であることを示すために使う用である。自動で設定されるものではな
+いことに注意する。上記例ではキーを挿入することで2つ目が植村氏，3つ目が松浦氏であると確定できる。
+\end_layout
+
+\begin_layout Subsection*
+Insert\SpecialChar menuseparator
+Custom Insets\SpecialChar menuseparator
+CLRM/Blank
+\end_layout
+
+\begin_layout Standard
+穴埋め式の問題であって，問題用紙と解答用紙が独立している通常のケースでは空欄に通し番号をつける必要がある。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM/Blank
+\end_layout
+
+\end_inset
+
+はこのようなケースで用いる。
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{student}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quote
+\noindent
+世界で一番高い山は
+\begin_inset Flex CLRM/Blank
+status open
+
+\begin_layout Plain Layout
+エベレスト
+\end_layout
+
+\end_inset
+
+である。この世界最高峰に登頂成功した初めての日本人は
+\begin_inset Flex CLRM/Blank
+status open
+
+\begin_layout Plain Layout
+植村直己
+\end_layout
+
+\end_inset
+
+と
+\begin_inset Flex CLRM/Blank
+status open
+
+\begin_layout Plain Layout
+松浦輝夫
+\end_layout
+
+\end_inset
+
+である。
+\begin_inset Flex CLRM/Blank
+status open
+
+\begin_layout Plain Layout
+植村直己
+\end_layout
+
+\end_inset
+
+はその年，世界初の五大陸最高峰登頂者となった。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{teacher}
+\backslash
+setcounter{blanknum}{0}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{blanknum}{0}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Quote
+\noindent
+世界で一番高い山は
+\begin_inset Flex CLRM/Blank
+status open
+
+\begin_layout Plain Layout
+エベレスト
+\end_layout
+
+\end_inset
+
+である。この世界最高峰に登頂成功した初めての日本人は
+\begin_inset Flex CLRM/Blank
+status open
+
+\begin_layout Plain Layout
+植村直己
+\end_layout
+
+\end_inset
+
+と
+\begin_inset Flex CLRM/Blank
+status open
+
+\begin_layout Plain Layout
+松浦輝夫
+\end_layout
+
+\end_inset
+
+である。
+\begin_inset Flex CLRM/Blank
+status open
+
+\begin_layout Plain Layout
+植村直己
+\end_layout
+
+\end_inset
+
+はその年，世界初の五大陸最高峰登頂者となった。
+\end_layout
+
+\begin_layout Section
+Environment (環境)
+\end_layout
+
+\begin_layout Standard
+現在，以下の環境が定義されている。
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+SolutionFrame
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TrueOrFalse
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+SolutionFrame
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+SolutionFrame
+\end_layout
+
+\end_inset
+
+には模範解答を記述する。この環境を挿入すると，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+ オプションが自動挿入されるので，ここに問題の相互参照用ラベルを書く。
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:sqrt-2"
+
+\end_inset
+
+
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ が無理数であることを証明せよ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{student}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout SolutionFrame
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand labelonly
+reference "prob:sqrt-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout SolutionFrame
+仮に
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ が有理数であるとしてみる。互いに素な自然数 
+\begin_inset Formula $p,q$
+\end_inset
+
+ があって，
+\begin_inset Formula $\sqrt{2}=p/q$
+\end_inset
+
+ とできる。
+\begin_inset Formula $2q^{2}=p^{2}$
+\end_inset
+
+ だから，
+\begin_inset Formula $p$
+\end_inset
+
+ は偶数でなければならない。つまり，
+\begin_inset Formula $m=p/2$
+\end_inset
+
+ は自然数である。
+\begin_inset Formula 
+\[
+2q^{2}=4m^{2}\Longrightarrow q^{2}=2m^{2}
+\]
+
+\end_inset
+
+なので，
+\begin_inset Formula $q$
+\end_inset
+
+ も偶数である。もともと，
+\begin_inset Formula $p,q$
+\end_inset
+
+ は互いに素であるように取ったので，これは矛盾である。よって，
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ は有理数ではない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+解答例の段落は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+ モードのときには出力されない。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+draft
+\end_layout
+
+\end_inset
+
+ の2つのモードで出力される。
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{teacher}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout SolutionFrame
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand labelonly
+reference "prob:sqrt-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout SolutionFrame
+仮に
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ が有理数であるとしてみる。互いに素な自然数 
+\begin_inset Formula $p,q$
+\end_inset
+
+ があって，
+\begin_inset Formula $\sqrt{2}=p/q$
+\end_inset
+
+ とできる。
+\begin_inset Formula $2q^{2}=p^{2}$
+\end_inset
+
+ だから，
+\begin_inset Formula $p$
+\end_inset
+
+ は偶数でなければならない。つまり，
+\begin_inset Formula $m=p/2$
+\end_inset
+
+ は自然数である。
+\begin_inset Formula 
+\[
+2q^{2}=4m^{2}\Longrightarrow q^{2}=2m^{2}
+\]
+
+\end_inset
+
+なので，
+\begin_inset Formula $q$
+\end_inset
+
+ も偶数である。もともと，
+\begin_inset Formula $p,q$
+\end_inset
+
+ は互いに素であるように取ったので，これは矛盾である。よって，
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ は有理数ではない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TrueOrFalse
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TrueOrFalse
+\end_layout
+
+\end_inset
+
+環境は正誤判定問題のための
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+enumerate
+\end_layout
+
+\end_inset
+
+リストの拡張である。
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{student}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+以下の各文章の正誤を判定しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout TrueOrFalse
+\begin_inset Argument item:1
+status open
+
+\begin_layout Plain Layout
+true
+\end_layout
+
+\end_inset
+
+拡張的財政政策を実施するとIS曲線は右にシフトする。
+\end_layout
+
+\begin_layout TrueOrFalse
+\begin_inset Argument item:1
+status open
+
+\begin_layout Plain Layout
+false
+\end_layout
+
+\end_inset
+
+拡張的財政政策は物価下落の要因となる。
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+ モードにすると正解の選択肢が枠囲いで表示される。
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{teacher}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Problem
+以下の各文章の正誤を判定しなさい。
+\end_layout
+
+\begin_deeper
+\begin_layout TrueOrFalse
+\begin_inset Argument item:1
+status open
+
+\begin_layout Plain Layout
+true
+\end_layout
+
+\end_inset
+
+拡張的財政政策を実施するとIS曲線は右にシフトする。
+\end_layout
+
+\begin_layout TrueOrFalse
+\begin_inset Argument item:1
+status open
+
+\begin_layout Plain Layout
+false
+\end_layout
+
+\end_inset
+
+拡張的財政政策は物価下落の要因となる。
+\end_layout
+
+\end_deeper
+\begin_layout Section
+要望
+\end_layout
+
+\begin_layout Itemize
+問題，解答以外の地の文でもモードに応じた出力ができる環境またはインセットがほしい。
+\end_layout
+
+\end_body
+\end_document
