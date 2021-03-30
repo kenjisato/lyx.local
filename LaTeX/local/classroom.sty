@@ -110,7 +110,7 @@
 \setlength{\clrmInnerFrameSep}{-5pt}
 
 \newenvironment{outerAnswerFrame}{\begin{framed}}{\end{framed}}
-\newenvironment{innerAnswerFrame}{}{}
+\newenvironment{innerAnswerFrame}{\bgroup}{\egroup}
 
 \newcounter{answersavedequation}
 
@@ -180,12 +180,12 @@
       \setFrameLength%
       \vspace{-0.5\baselineskip}%
       \begin{outerAnswerFrame}
-        \noindent\writeAnswerFrameLabel{#1}
+        \noindent{\small \writeAnswerFrameLabel{#1}}
         \vspace{\clrmInnerFrameSep}
         \bgroup
           \setlength\OuterFrameSep{0pt}
           \begin{innerAnswerFrame}
-            \begin{minipage}[t][#2\baselineskip]{\textwidth}
+            \par\noindent\begin{minipage}[t][#2\baselineskip]{\textwidth}
               \BODY
             \end{minipage}
           \end{innerAnswerFrame}
