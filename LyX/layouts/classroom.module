@@ -72,7 +72,7 @@ End
 InsetLayout "Flex:CLRM/AnswerFrame"
   LyXType       custom
   Decoration    classic
-  LabelString   "Answer Frame"
+  LabelString   "Answer Frame (Height)"
   LatexType   command
   LatexName   AnswerFrame
   Argument 1
@@ -92,6 +92,16 @@ InsetLayout "Flex:CLRM/AnswerFrame"
   LabelFont
       Size        Small
   EndFont
+End
+
+InsetLayout "Flex:CLRM/PrintSolutions"
+  LyXType       custom
+  Decoration    classic
+  LabelString   "Print Solutions"
+  LatexType   command
+  LatexName   printsolutions
+  MultiPar        false
+  ContentAsLabel  false
 End
 
 Style SolutionFrame
@@ -117,10 +127,6 @@ Style SolutionFrame
 	ParSep                0.3
 	Align            Block
   Argument 1
-    LabelString     "Additional Text"
-    Tooltip         "Append additional text; for example, Solution (Problem 2, additional text)"
-  EndArgument
-  Argument 2
     LabelString    "ref"
     Tooltip        "Enter the reference label"
     LeftDelim      {
@@ -130,11 +136,54 @@ Style SolutionFrame
   	  Family       Typewriter
     EndFont
     AutoInsert     1
+    Mandatory      1
+  EndArgument
+  Argument 2
+    LabelString     "here?"
+    Tooltip         "Type 'here' if you want to typeset the solution here, not after."
+    Mandatory       1
+  EndArgument
+  Argument 3
+    LabelString     "Additional Text"
+    Tooltip         "Append additional text; for example, Solution (Problem 2, additional text)"
+    Mandatory       1
   EndArgument
   AutoNests
   	Standard,Itemize,Enumerate
   EndAutoNests
 End
+
+
+Style TeacherOnly
+	Category         Classroom
+  Margin           First_Dynamic
+  LeftMargin       xx
+	LatexType        Environment
+	LatexName        TeacherOnly
+	NextNoIndent     0
+	ToggleIndent     Always
+  LabelType        Static
+  LabelString      "Note (Teacher Mode Only)"
+  LabelSep         xx
+  LabelFont
+	  Shape          Up
+	  Series         Bold
+	EndFont
+  Font
+    Color          blue
+  EndFont
+	ParIndent        MM
+	ParSkip          0.4
+	ItemSep          0.2
+	TopSep           0.7
+	BottomSep        0.7
+	ParSep           0.3
+	Align            Block
+  AutoNests
+  	Standard,Itemize,Enumerate
+  EndAutoNests
+End
+
 
 Style TrueOrFalse
 	Category              Classroom

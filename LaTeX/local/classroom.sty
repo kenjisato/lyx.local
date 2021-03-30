@@ -1,11 +1,14 @@
+\usepackage{xcolor}
 \usepackage{calc}
-\usepackage{ifthen}
 \usepackage{suffix}
 \usepackage{framed}
 \usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage{etoolbox}
+\usepackage{environ}
+\usepackage{latexsym}
 
+\providecommand\qed{\hfill $\Box$}
 
 %%
 %% clrmMode:
@@ -14,23 +17,23 @@
 %%    draft   -> Show both.
 %%
 \newcommand\clrmMode{draft}
-\newcommand\setMode[1]{\renewcommand{\clrmMode}{#1}}
 
-\newboolean{showSolution}
-\newboolean{showBlankbox} % Used for AnswerFrame
+\newbool{showSolution}
+\newbool{showBlankbox} % Used for AnswerFrame
 
-\newcommand\readMode{%
-  \ifthenelse{\equal{\clrmMode}{teacher}}{%
-    \setboolean{showSolution}{true}%
-    \setboolean{showBlankbox}{false}%
+\newcommand\setMode[1]{%
+  \renewcommand{\clrmMode}{#1}%
+  \ifdefstring{\clrmMode}{teacher}{%
+    \global\booltrue{showSolution}%
+    \global\boolfalse{showBlankbox}%
   }{}%
-  \ifthenelse{\equal{\clrmMode}{student}}{%
-    \setboolean{showSolution}{false}%
-    \setboolean{showBlankbox}{true}%
+  \ifdefstring{\clrmMode}{student}{%
+    \global\boolfalse{showSolution}%
+    \global\booltrue{showBlankbox}%
   }{}%
-  \ifthenelse{\equal{\clrmMode}{draft}}{%
-    \setboolean{showSolution}{true}%
-    \setboolean{showBlankbox}{true}%
+  \ifdefstring{\clrmMode}{draft}{%
+    \global\booltrue{showSolution}%
+    \global\booltrue{showBlankbox}%
   }{}%
 }
 
@@ -43,16 +46,14 @@
 \newcommand\blankboxWriteSolution[1]{\textbf{\large{#1}}}
 \newcommand{\blankbox}[1]{%
   \refstepcounter{blanknum} %
-  \readMode%
   \setlength\blankboxwidth{3em+\widthof{\blankboxWriteSolution{#1}}}%
   \protect\framebox[\blankboxwidth][c]{%
-    (\theblanknum)\ifthenelse{\boolean{showSolution}}{\blankboxWriteSolution{#1}}{}}%
+    (\theblanknum)\ifbool{showSolution}{{\color{cyan} \blankboxWriteSolution{#1}}}{}}%
 }
 \WithSuffix\newcommand\blankbox*[3]{%
-  \readMode%
   \setlength\blankboxwidth{#2+\widthof{#1 }+\widthof{\blankboxWriteSolution{#3}}}%
-  \ifthenelse{\boolean{showSolution}}{%
-    \protect\framebox[\blankboxwidth][c]{\blankboxWriteSolution{#3}}%
+  \ifbool{showSolution}{%
+    \protect\framebox[\blankboxwidth][c]{{\color{cyan} \blankboxWriteSolution{#3}}}%
   }{%
     \protect\framebox[\blankboxwidth][l]{#1\phantom{\blankboxWriteSolution{#3}}}%
   }%
@@ -61,15 +62,15 @@
 %%
 %% True or False Questions
 %%
-\newcommand{\TFTrueLabel}{T}
-\newcommand{\TFFalseLabel}{F}
+\newcommand{\TFTrueLabel}{\textsf{T}}
+\newcommand{\TFFalseLabel}{\textsf{F}}
 \newcommand{\TFSolution}[1]{%
-  \ifthenelse{%
-    \equal{#1}{true} \OR \equal{#1}{True} \OR \equal{#1}{T} \OR \equal{#1}{TRUE}%
+  \ifboolexpr{%
+    test {\ifstrequal{#1}{true}} or test {\ifstrequal{#1}{True}} or test {\ifstrequal{#1}{TRUE}}%
   }{%
-    \fbox{\TFTrueLabel}~/~\TFFalseLabel%
+    \fcolorbox{cyan}{white}{\TFTrueLabel}~/~\TFFalseLabel%
   }{%
-    \TFTrueLabel~/~\fbox{\TFFalseLabel}%
+    \TFTrueLabel~/~\fcolorbox{cyan}{white}{\TFFalseLabel}%
   }%
 }
 
@@ -77,10 +78,7 @@
 \setlength\TFMinipageWidth{\textwidth-\widthof{\TFTrueLabel / \TFFalseLabel}-6em}
 
 \newcommand{\TFInsert}[1]{%
-  \readMode%
-  \ifthenelse{%
-    \boolean{showSolution}%
-  }{%
+  \ifbool{showSolution}{%
     \TFSolution{#1}%
   }{%
     \TFTrueLabel~/~\TFFalseLabel%
@@ -121,34 +119,62 @@
 %%
 \newcommand{\SolutionFrameLabel}{Solution}
 \newcommand{\writeSolutionFrameLabel}[2]{%
-\textbf{\SolutionFrameLabel~(\refCommand{#2}\ifthenelse{\equal{#1}{}}{}{, #1})}
-  % #1 = Optional Text
-  % #2 = cross ref label to the problem.
+  % #1 = cross ref label to the problem.
+  % #2 = Optional Text
+  \begingroup%
+  \def\solReferenceLabel{\ifblank{#1}{%
+      \ifblank{#2}{}{~(#2)}}{%
+      ~(\refCommand{#1}\ifblank{#2}{}{, #2})}}%
+  \textbf{\SolutionFrameLabel\solReferenceLabel}%
+  \endgroup%
 }
 
-\newenvironment{SolutionFrame}[2][]% #1=some text (optional), #2=ref
-  {\readMode\ifthenelse{\boolean{showSolution}}{\BeginSolutionFrame[#1]{#2}}{\comment}}%
-  {\ifthenelse{\boolean{showSolution}}{\EndSolutionFrame}{\endcomment}}
-\newcommand\BeginSolutionFrame[2][]{
- \setcounter{answersavedequation}{\value{equation}}%
- \setcounter{equation}{0}%
- \renewcommand{\theequation}{\roman{equation}}%
- \noindent\writeSolutionFrameLabel{#1}{#2} %
- \par
+\makeatletter
+\newtoks\late@solutiontoks
+
+\NewEnviron{SolutionFrame}[3]{% #1=ref, #2=here?, #3=optional text
+% If "here" is set: then show here and NOT after.
+% Else if showSolution is true: then show here and after.
+% Else: show after.
+  \toks@=\expandafter{\BODY}%
+  \ifstrequal{#2}{here}{}{% "here" is false
+      \protected@edef\@tempa{%
+        \the\late@solutiontoks % the previous contents
+        \noexpand\late@solution{#1}{#3}{\the\toks@}%
+      }%
+      \global\late@solutiontoks=\expandafter{\@tempa}%
+    }%
+  \ifboolexpr{ test {\ifstrequal{#2}{here}} or bool {showSolution} }{%
+        \ifbool{showSolution}{\color{cyan}}{}%
+        \late@solution{#1}{#3}{\the\toks@}%
+      }{}%
+}%
+
+\newcommand{\late@solution}[3]{%
+  \setcounter{answersavedequation}{\value{equation}}%
+  \setcounter{equation}{0}%
+  \renewcommand{\theequation}{\roman{equation}}%
+  \par\noindent\writeSolutionFrameLabel{#1}{#2}%
+  \par
+  #3
+  \qed\vspace{0.5\baselineskip}%
 }
-\newcommand\EndSolutionFrame{\qed}
+\newcommand{\printsolutions}{%
+  \the\late@solutiontoks
+}
+\makeatother
 
 %%
-%% AnswerFrame for ShowSolution==false
+%% AnswerFrame for ShowBlankbox==true
 %%
 \newcommand{\AnswerFrameLabel}{Answer}
 \newcommand{\writeAnswerFrameLabel}[1]{%
   % #1 = cross ref label to the problem.
-  \textbf{\AnswerFrameLabel \ifthenelse{\equal{#1}{}}{}{\mbox{(\refCommand{#1})}}}%
+  \textbf{\AnswerFrameLabel \ifblank{#1}{}{}{\mbox{(\refCommand{#1})}}}%
 }
 
 \newcommand{\AnswerFrame}[3][]{ % #1=optional hint text, #2=ref, #3=height (in \baselineskip)
-  \readMode\ifthenelse{\boolean{showBlankbox}}{%
+  \ifbool{showBlankbox}{%
     \bgroup%
       \setFrameLength%
       \vspace{-0.5\baselineskip}%
@@ -167,3 +193,10 @@
     \egroup
   }{}
 }
+
+%%
+%% TeacherOnly for clrmMode=teacher/draft
+%%
+\newenvironment{TeacherOnly}
+  {\ifbool{showSolution}{\color{cyan}}{\comment}}%
+  {\ifbool{showSolution}{}{\endcomment}}

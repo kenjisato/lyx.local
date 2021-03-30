@@ -178,9 +178,8 @@ classroom.sty
 \end_layout
 
 \begin_layout Standard
-このスタイルファイルはあくまでも講義ノートを読解する上での理解力確認用の練習問題や，講義時に配布される講義資料の作成を想定している。解答例を表示する機能を付けて
-いるが，解答例だけを表示する機能はないので，解答例は学生配布用というよりは教員用の「虎の巻」的なものである。このスタイルだけで試験問題や問題集，フィードバック用
-の資料を作成するには機能が不十分である。
+このスタイルファイルはあくまでも講義ノートを読解する上での理解力確認用の練習問題や，講義時に配布される講義資料の作成を想定している。このスタイルだけで試験問題や
+問題集，フィードバック用の資料を作成するには機能が不十分かもしれない。
 \end_layout
 
 \begin_layout Section
@@ -255,6 +254,19 @@ status open
 
 \begin_layout Plain Layout
 CLRM/Blank
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM/PrintSolutions
 \end_layout
 
 \end_inset
@@ -513,6 +525,7 @@ AnswerFrameLabel
 \end_layout
 
 \begin_layout Verbatim
+
 \begin_inset Flex Code
 status open
 
@@ -547,6 +560,7 @@ writeAnswerFrameLabel
 
 \begin_layout Verbatim
 
+
 \backslash
 newcommand{
 \backslash
@@ -554,31 +568,23 @@ writeAnswerFrameLabel}[1]{%
 \end_layout
 
 \begin_layout Verbatim
-	  % #1 = cross ref label to the problem.
+
+  % #1 = cross ref label to the problem.
 \end_layout
 
 \begin_layout Verbatim
 
+  
 \backslash
 textbf{
 \backslash
-AnswerFrameLabel %
-\end_layout
-
-\begin_layout Verbatim
-
+AnswerFrameLabel 
 \backslash
-ifthenelse{
-\backslash
-equal{#1}{}}{}{
+ifblank{#1}{}{}{
 \backslash
 mbox{(
 \backslash
-refCommand{#1})}}}%
-\end_layout
-
-\begin_layout Verbatim
-	}
+refCommand{#1})}}}% }
 \end_layout
 
 \begin_layout Standard
@@ -586,6 +592,7 @@ refCommand{#1})}}}%
 \end_layout
 
 \begin_layout Verbatim
+
 
 \backslash
 renewcommand{
@@ -663,7 +670,7 @@ Mode
 status open
 
 \begin_layout Plain Layout
-problem
+student
 \end_layout
 
 \end_inset
@@ -683,7 +690,7 @@ draft
 status open
 
 \begin_layout Plain Layout
-solution
+teacher
 \end_layout
 
 \end_inset
@@ -1073,6 +1080,33 @@ status open
 はその年，世界初の五大陸最高峰登頂者となった。
 \end_layout
 
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Insert\SpecialChar menuseparator
+Custom Insets\SpecialChar menuseparator
+CLRM/PrintSolutions
+\end_layout
+
+\begin_layout Standard
+後述する 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+SolutionFrame
+\end_layout
+
+\end_inset
+
+ で定義した解答例をまとめて出力するコマンド。巻末に解答例をまとめて掲載する場合に使用する。
+\end_layout
+
 \begin_layout Section
 Environment (環境)
 \end_layout
@@ -1100,6 +1134,19 @@ status open
 
 \begin_layout Plain Layout
 TrueOrFalse
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TeacherOnly
 \end_layout
 
 \end_inset
@@ -1148,6 +1195,54 @@ ref
 \end_inset
 
  オプションが自動挿入されるので，ここに問題の相互参照用ラベルを書く。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+ref{label}
+\end_layout
+
+\end_inset
+
+ でなく，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+label
+\end_layout
+
+\end_inset
+
+ であることに注意する。
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{student}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Problem
@@ -1162,6 +1257,228 @@ name "prob:sqrt-2"
 \end_inset
 
  が無理数であることを証明せよ。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+ モードでは解答が抑制される。解答は保存されて後ほど 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CRLM/PrintSolutions
+\end_layout
+
+\end_inset
+
+ コマンドでまとめて出力できる。
+\end_layout
+
+\begin_layout SolutionFrame
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand labelonly
+reference "prob:sqrt-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+仮に
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ が有理数であるとしてみる。互いに素な自然数 
+\begin_inset Formula $p,q$
+\end_inset
+
+ があって，
+\begin_inset Formula $\sqrt{2}=p/q$
+\end_inset
+
+ とできる。
+\begin_inset Formula $2q^{2}=p^{2}$
+\end_inset
+
+ だから，
+\begin_inset Formula $p$
+\end_inset
+
+ は偶数でなければならない。つまり，
+\begin_inset Formula $m=p/2$
+\end_inset
+
+ は自然数である。
+\begin_inset Formula 
+\[
+2q^{2}=4m^{2}\Longrightarrow q^{2}=2m^{2}
+\]
+
+\end_inset
+
+なので，
+\begin_inset Formula $q$
+\end_inset
+
+ も偶数である。もともと，
+\begin_inset Formula $p,q$
+\end_inset
+
+ は互いに素であるように取ったので，これは矛盾である。よって，
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ は有理数ではない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+次に
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+モードを用いた例を紹介する。
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{teacher}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+ モードにすると解答が出力される。この解答も保存されて後ほど 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CRLM/PrintSolutions
+\end_layout
+
+\end_inset
+
+ コマンドで出力される。第3のパラメータ（Additional Text）を設定することで「別解」などの短いテキストを入力することもできる。
+\end_layout
+
+\begin_layout SolutionFrame
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand labelonly
+reference "prob:sqrt-2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 3
+status open
+
+\begin_layout Plain Layout
+別解
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\sqrt{2}$
+\end_inset
+
+ が有理数であるとすれば互いに素な自然数 
+\begin_inset Formula $p,q$
+\end_inset
+
+ があって，
+\begin_inset Formula $\sqrt{2}=p/q$
+\end_inset
+
+ とできる。したがって，
+\begin_inset Formula $2q^{2}=p^{2}$
+\end_inset
+
+ である。左辺は 
+\begin_inset Formula $2$
+\end_inset
+
+ で奇数回割ることができ，右辺はゼロ回または偶数回割ることができる。素因数分解は一意なので，これは不合理である。
 \end_layout
 
 \begin_layout Standard
@@ -1197,148 +1514,71 @@ student
 
 \end_layout
 
-\begin_layout SolutionFrame
-\begin_inset Argument 2
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset ref
-LatexCommand labelonly
-reference "prob:sqrt-2"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout SolutionFrame
-仮に
-\begin_inset Formula $\sqrt{2}$
-\end_inset
-
- が有理数であるとしてみる。互いに素な自然数 
-\begin_inset Formula $p,q$
-\end_inset
-
- があって，
-\begin_inset Formula $\sqrt{2}=p/q$
-\end_inset
-
- とできる。
-\begin_inset Formula $2q^{2}=p^{2}$
-\end_inset
-
- だから，
-\begin_inset Formula $p$
-\end_inset
-
- は偶数でなければならない。つまり，
-\begin_inset Formula $m=p/2$
-\end_inset
-
- は自然数である。
-\begin_inset Formula 
-\[
-2q^{2}=4m^{2}\Longrightarrow q^{2}=2m^{2}
-\]
-
-\end_inset
-
-なので，
-\begin_inset Formula $q$
-\end_inset
-
- も偶数である。もともと，
-\begin_inset Formula $p,q$
-\end_inset
-
- は互いに素であるように取ったので，これは矛盾である。よって，
-\begin_inset Formula $\sqrt{2}$
-\end_inset
-
- は有理数ではない。
-\end_layout
-
 \begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-解答例の段落は 
+学生配布用の資料であっても練習問題の解答を含めたい場合もある。このような場合，
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-student
+SolutionFrame
 \end_layout
 
 \end_inset
 
- モードのときには出力されない。
+ 環境の第2のパラメータに 
 \begin_inset Flex Code
 status open
 
 \begin_layout Plain Layout
-teacher
+here
 \end_layout
 
+\end_inset
+
+ と入力する。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+here
+\end_layout
+
+\end_inset
+
+ を設定した解答は 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CRLM/PrintSolutions
+\end_layout
+
+\end_inset
+
+ コマンドで出力されないことに注意する。
+\end_layout
+
+\begin_layout Problem
+行列 
+\begin_inset Formula $A$
 \end_inset
 
 , 
-\begin_inset Flex Code
-status open
+\begin_inset Formula $B$
+\end_inset
 
-\begin_layout Plain Layout
-draft
-\end_layout
+ が可換であるとき，
+\begin_inset Formula 
+\begin{equation}
+e^{A+B}=e^{A}e^{B}\label{eq:prob3}
+\end{equation}
 
 \end_inset
 
- の2つのモードで出力される。
+が成り立つことを示しなさい。
 \end_layout
 
 \begin_layout Standard
-\noindent
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-
-\backslash
-setMode{teacher}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Flex CLRM/ Mode
-status open
-
-\begin_layout Plain Layout
-teacher
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace smallskip
-\end_inset
-
-
 \begin_inset Separator plain
 \end_inset
 
@@ -1346,80 +1586,34 @@ teacher
 \end_layout
 
 \begin_layout SolutionFrame
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Argument 2
 status open
 
 \begin_layout Plain Layout
-\begin_inset CommandInset ref
-LatexCommand labelonly
-reference "prob:sqrt-2"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-
+here
 \end_layout
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout SolutionFrame
-仮に
-\begin_inset Formula $\sqrt{2}$
-\end_inset
-
- が有理数であるとしてみる。互いに素な自然数 
-\begin_inset Formula $p,q$
-\end_inset
-
- があって，
-\begin_inset Formula $\sqrt{2}=p/q$
-\end_inset
-
- とできる。
-\begin_inset Formula $2q^{2}=p^{2}$
-\end_inset
-
- だから，
-\begin_inset Formula $p$
-\end_inset
-
- は偶数でなければならない。つまり，
-\begin_inset Formula $m=p/2$
-\end_inset
-
- は自然数である。
+二項定理
 \begin_inset Formula 
 \[
-2q^{2}=4m^{2}\Longrightarrow q^{2}=2m^{2}
+\left(x+y\right)^{n}=n!\sum_{i+j=n}\frac{x^{i}}{i!}\frac{y^{j}}{j!}
 \]
 
 \end_inset
 
-なので，
-\begin_inset Formula $q$
-\end_inset
-
- も偶数である。もともと，
-\begin_inset Formula $p,q$
-\end_inset
-
- は互いに素であるように取ったので，これは矛盾である。よって，
-\begin_inset Formula $\sqrt{2}$
-\end_inset
-
- は有理数ではない。
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
+を用いる。以下略。（可換性がどのように使われるか？）
 \end_layout
 
 \begin_layout Subsection*
@@ -1485,6 +1679,12 @@ student
 \end_layout
 
 \begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:4"
+
+\end_inset
+
 以下の各文章の正誤を判定しなさい。
 \end_layout
 
@@ -1523,6 +1723,28 @@ false
 
 \end_layout
 
+\begin_layout SolutionFrame
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand labelonly
+reference "prob:4"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+(1) T, (2) F
+\end_layout
+
 \begin_layout Standard
 \begin_inset Flex Code
 status open
@@ -1533,7 +1755,7 @@ teacher
 
 \end_inset
 
- モードにすると正解の選択肢が枠囲いで表示される。
+ モードにすると正解の選択肢が枠囲いで表示される。 
 \end_layout
 
 \begin_layout Standard
@@ -1572,12 +1794,12 @@ teacher
 status open
 
 \begin_layout Plain Layout
-true
+false
 \end_layout
 
 \end_inset
 
-拡張的財政政策を実施するとIS曲線は右にシフトする。
+拡張的財政政策を実施するとIS曲線は左にシフトする。
 \end_layout
 
 \begin_layout TrueOrFalse
@@ -1585,21 +1807,840 @@ true
 status open
 
 \begin_layout Plain Layout
-false
+true
 \end_layout
 
 \end_inset
 
-拡張的財政政策は物価下落の要因となる。
+拡張的財政政策は物価上昇の要因となる。
 \end_layout
 
 \end_deeper
-\begin_layout Section
-要望
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-問題，解答以外の地の文でもモードに応じた出力ができる環境またはインセットがほしい。
+\begin_layout Subsection*
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TeacherOnly
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+教員用の手元資料のみに出力したい内容を書くために 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TeacherOnly
+\end_layout
+
+\end_inset
+
+環境を用いる。
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{student}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout TeacherOnly
+このノートは 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher/draft
+\end_layout
+
+\end_inset
+
+ モードのみ表示される。（ここは表示されない）
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{teacher}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout TeacherOnly
+このノートは 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher/draft
+\end_layout
+
+\end_inset
+
+ モードのみ表示される。
+\end_layout
+
+\begin_layout Section
+まとめと要望
+\end_layout
+
+\begin_layout Standard
+モードと各コマンド・環境の出力結果は表
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:mode-and-command"
+
+\end_inset
+
+にまとめられる。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+モードと
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+draft
+\end_layout
+
+\end_inset
+
+モードにはほとんど差がないので，簡略化するか，もう少し差別化した方がいいかもしれない。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+centering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+コマンド・環境とモードの関係
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:mode-and-command"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="8" columns="6">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+タイプ
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="1" alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+clrmMode
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="3" alignment="center" valignment="middle" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+備考
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+draft
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multirow="4" alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+AnswerFrame
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+コマンド
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✗
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Blank
+\end_layout
+
+\end_inset
+
+,
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Blank*
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+コマンド
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\begin_inset Formula $^{*1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\begin_inset Formula $^{*1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $^{*1}$
+\end_inset
+
+ 解答付き
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+SolutionFrame
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+環境
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✗
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TrueOrFalse
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+環境（リスト）
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\begin_inset Formula $^{*2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\begin_inset Formula $^{*2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $^{*2}$
+\end_inset
+
+ 解答付き
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+TeacherOnly
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+環境
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✗
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+PrintSolutions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+コマンド
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+巻末解答集
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\start_of_appendix
+練習問題略解
+\end_layout
+
+\begin_layout Standard
+最後に，
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM/PrintSolutions
+\end_layout
+
+\end_inset
+
+ の出力結果を紹介する。これはすべてのモードで出力される。模範解答を配りたくない場合は，コマンドごと消してしまえばよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex CLRM/PrintSolutions
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
