@@ -170,22 +170,23 @@
 \newcommand{\AnswerFrameLabel}{Answer}
 \newcommand{\writeAnswerFrameLabel}[1]{%
   % #1 = cross ref label to the problem.
-  \textbf{\AnswerFrameLabel \ifblank{#1}{}{}{\mbox{(\refCommand{#1})}}}%
+  \def\ansReferenceLabel{\ifblank{#1}{}{~\mbox{(\refCommand{#1})}}}%
+  \textbf{\AnswerFrameLabel\ansReferenceLabel}%
 }
 
-\newcommand{\AnswerFrame}[3][]{ % #1=optional hint text, #2=ref, #3=height (in \baselineskip)
+\NewEnviron{AnswerFrame}[2]{ % #1=ref, #2=height (in \baselineskip)
   \ifbool{showBlankbox}{%
     \bgroup%
       \setFrameLength%
       \vspace{-0.5\baselineskip}%
       \begin{outerAnswerFrame}
-        \noindent\writeAnswerFrameLabel{#2}
+        \noindent\writeAnswerFrameLabel{#1}
         \vspace{\clrmInnerFrameSep}
         \bgroup
           \setlength\OuterFrameSep{0pt}
           \begin{innerAnswerFrame}
-            \begin{minipage}[t][#3\baselineskip]{\textwidth}
-              {\small #1}\phantom{ }
+            \begin{minipage}[t][#2\baselineskip]{\textwidth}
+              \BODY
             \end{minipage}
           \end{innerAnswerFrame}
         \egroup

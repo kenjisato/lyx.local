@@ -69,30 +69,6 @@ InsetLayout  "Flex:CLRM/Blank*"
     EndArgument
 End
 
-InsetLayout "Flex:CLRM/AnswerFrame"
-  LyXType       custom
-  Decoration    classic
-  LabelString   "Answer Frame (Height)"
-  LatexType   command
-  LatexName   AnswerFrame
-  Argument 1
-    LabelString "Hint"
-    Mandatory   0
-  EndArgument
-  Argument 2
-    LabelString "Ref lbl"
-    Tooltip     "Ref (Label only)"
-    Requires    1
-    AutoInsert  1
-    Mandatory   1
-  EndArgument
-  MultiPar        false
-  ContentAsLabel  false
-  PassThru        0
-  LabelFont
-      Size        Small
-  EndFont
-End
 
 InsetLayout "Flex:CLRM/PrintSolutions"
   LyXType       custom
@@ -103,6 +79,53 @@ InsetLayout "Flex:CLRM/PrintSolutions"
   MultiPar        false
   ContentAsLabel  false
 End
+
+
+Style AnswerFrame
+	Category         Classroom
+  Margin           First_Dynamic
+  LeftMargin       xx
+	LatexType        Environment
+	LatexName        AnswerFrame
+	NextNoIndent     0
+	ToggleIndent     Always
+  LabelType        Static
+  LabelString      "AnswerFrame"
+  LabelSep              xx
+  LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	ParIndent             MM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align            Block
+  Argument 1
+    LabelString    "ref"
+    Tooltip        "Enter the reference label"
+    LeftDelim      {
+    RightDelim     }
+    Decoration     conglomerate
+    Font
+  	  Family       Typewriter
+    EndFont
+    Mandatory      1
+  EndArgument
+  Argument 2
+    LabelString     "Height"
+    Tooltip         "X\baselineskip"
+    Mandatory       1
+    AutoInsert      1
+  EndArgument
+  KeepEmpty         1
+  AutoNests
+  	Standard,Itemize,Enumerate
+  EndAutoNests
+End
+
 
 Style SolutionFrame
 	Category         Classroom

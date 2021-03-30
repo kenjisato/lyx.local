@@ -367,340 +367,6 @@ draft
 \begin_layout Subsection*
 Insert\SpecialChar menuseparator
 Custom Insets\SpecialChar menuseparator
-CLRM/AnswerFrame
-\end_layout
-
-\begin_layout Standard
-以下のような解答書き込み用の枠を作ることができる。自動的に挿入される
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-Ref lbl
-\end_layout
-
-\end_inset
-
-オプションには対応する問題のラベルを挿入する。デフォルトでは
-\series bold
-Hyperref
-\series default
-パッケージの
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-
-\backslash
-autoref
-\end_layout
-
-\end_inset
-
-が使用される。解答枠の高さは，空欄の高さは
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-
-\backslash
-autoref
-\end_layout
-
-\end_inset
-
-の枠の外，
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-Answer
-\end_layout
-
-\end_inset
-
-枠の内側に記入する。入力した数字は
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-
-\backslash
-baselineskip
-\end_layout
-
-\end_inset
-
- を1としたときの比率と解釈されて解答枠の高さが決まる。
-\end_layout
-
-\begin_layout Problem
-\begin_inset CommandInset label
-LatexCommand label
-name "prob:1"
-
-\end_inset
-
-3以上の任意の自然数
-\begin_inset Formula $n$
-\end_inset
-
- について，
-\begin_inset Formula $a^{n}+b^{n}=c^{n}$
-\end_inset
-
- となる整数の組
-\begin_inset Formula $(a,b,c)$
-\end_inset
-
- が存在しないことを証明しなさい。
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex CLRM/AnswerFrame
-status open
-
-\begin_layout Plain Layout
-\begin_inset Argument 2
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset ref
-LatexCommand labelonly
-reference "prob:1"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-5
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-%
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-プリアンブルで
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-
-\backslash
-AnswerFrameLabel
-\end_layout
-
-\end_inset
-
-を再定義すれば枠の左上のテキストを変更できる。デフォルトは Answerとなっているが，この資料では
-\end_layout
-
-\begin_layout Verbatim
-
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-
-\backslash
-renewcommand{
-\backslash
-AnswerFrameLabel}{解答欄}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-としている。また，表示方式を変えたいときには
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-
-\backslash
-writeAnswerFrameLabel
-\end_layout
-
-\end_inset
-
-を変更する。デフォルトは以下のような定義となっている。
-\end_layout
-
-\begin_layout Verbatim
-
-
-\backslash
-newcommand{
-\backslash
-writeAnswerFrameLabel}[1]{%
-\end_layout
-
-\begin_layout Verbatim
-
-  % #1 = cross ref label to the problem.
-\end_layout
-
-\begin_layout Verbatim
-
-  
-\backslash
-textbf{
-\backslash
-AnswerFrameLabel 
-\backslash
-ifblank{#1}{}{}{
-\backslash
-mbox{(
-\backslash
-refCommand{#1})}}}% }
-\end_layout
-
-\begin_layout Standard
-表示を完全に消したいときには，
-\end_layout
-
-\begin_layout Verbatim
-
-
-\backslash
-renewcommand{
-\backslash
-writeAnswerFrameLabel}[1]{}
-\end_layout
-
-\begin_layout Standard
-とすればよい。もちろんこの場合
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-Ref lbl
-\end_layout
-
-\end_inset
-
-を設定する必要はない。
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-renewcommand{
-\backslash
-writeAnswerFrameLabel}[1]{}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex CLRM/AnswerFrame
-status open
-
-\begin_layout Plain Layout
-5
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-CLRM/AnswerBox
-\end_layout
-
-\end_inset
-
- は
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-Mode
-\end_layout
-
-\end_inset
-
- が
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-student
-\end_layout
-
-\end_inset
-
- と
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-draft
-\end_layout
-
-\end_inset
-
-の場合のみ表示される。
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
-teacher
-\end_layout
-
-\end_inset
-
-では表示されない。
-\end_layout
-
-\begin_layout Subsection*
-Insert\SpecialChar menuseparator
-Custom Insets\SpecialChar menuseparator
 CLRM/Blank*
 \end_layout
 
@@ -1120,6 +786,19 @@ Environment (環境)
 status open
 
 \begin_layout Plain Layout
+AnswerFrame
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
 SolutionFrame
 \end_layout
 
@@ -1159,6 +838,411 @@ TeacherOnly
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection*
+AnswerFrame
+\end_layout
+
+\begin_layout Standard
+\noindent
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+setMode{student}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Flex CLRM/ Mode
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+以下のような解答書き込み用の枠を作ることができる。自動的に挿入される
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Height
+\end_layout
+
+\end_inset
+
+オプションには枠の高さを
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+baselineskip
+\end_layout
+
+\end_inset
+
+ を1としたときの比率で入力する。オプションの
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+パラメータには対応する問題の相互参照用ラベルを挿入する。デフォルトでは
+\series bold
+Hyperref
+\series default
+パッケージの
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+autoref
+\end_layout
+
+\end_inset
+
+が使用される。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+AnswerFrame
+\end_layout
+
+\end_inset
+
+環境は本体は空欄でも構わない。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+モードと
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+draft
+\end_layout
+
+\end_inset
+
+モードで表示される。
+\end_layout
+
+\begin_layout Problem
+\begin_inset CommandInset label
+LatexCommand label
+name "prob:1"
+
+\end_inset
+
+3以上の任意の自然数
+\begin_inset Formula $n$
+\end_inset
+
+ について，
+\begin_inset Formula $a^{n}+b^{n}=c^{n}$
+\end_inset
+
+ となる整数の組
+\begin_inset Formula $(a,b,c)$
+\end_inset
+
+ が存在しないことを証明しなさい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout AnswerFrame
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset ref
+LatexCommand labelonly
+reference "prob:1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout AnswerFrame
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+
+ここにヒントを書いたり作図用の座標軸などを描いてもよい。
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+プリアンブルで
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+AnswerFrameLabel
+\end_layout
+
+\end_inset
+
+を再定義すれば枠の左上のテキストを変更できる。デフォルトは Answerとなっているが，この資料では
+\end_layout
+
+\begin_layout Verbatim
+
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+renewcommand{
+\backslash
+AnswerFrameLabel}{解答欄}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+としている。また，表示方式を変えたいときには
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+writeAnswerFrameLabel
+\end_layout
+
+\end_inset
+
+を変更する。デフォルトは以下のような定義となっている。
+\end_layout
+
+\begin_layout Verbatim
+
+
+\backslash
+newcommand{
+\backslash
+writeAnswerFrameLabel}[1]{%
+\end_layout
+
+\begin_layout Verbatim
+
+  % #1 = cross ref label to the problem.
+\end_layout
+
+\begin_layout Verbatim
+
+  
+\backslash
+def
+\backslash
+ansReferenceLabel{
+\backslash
+ifblank{#1}{}{~
+\backslash
+mbox{(
+\backslash
+refCommand{#1})}}}%
+\end_layout
+
+\begin_layout Verbatim
+
+  
+\backslash
+textbf{
+\backslash
+AnswerFrameLabel
+\backslash
+ansReferenceLabel}
+\end_layout
+
+\begin_layout Standard
+表示を完全に消したいときには，
+\end_layout
+
+\begin_layout Verbatim
+
+
+\backslash
+renewcommand{
+\backslash
+writeAnswerFrameLabel}[1]{}
+\end_layout
+
+\begin_layout Standard
+とすればよい。もちろんこの場合
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+ref
+\end_layout
+
+\end_inset
+
+を設定する必要はない。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+writeAnswerFrameLabel}[1]{}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout AnswerFrame
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+CLRM/AnswerBox
+\end_layout
+
+\end_inset
+
+ は
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+Mode
+\end_layout
+
+\end_inset
+
+ が
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+student
+\end_layout
+
+\end_inset
+
+ と
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+draft
+\end_layout
+
+\end_inset
+
+の場合のみ表示される。
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+teacher
+\end_layout
+
+\end_inset
+
+では表示されない。
 \end_layout
 
 \begin_layout Subsection*
@@ -2182,71 +2266,6 @@ draft
 status open
 
 \begin_layout Plain Layout
-AnswerFrame
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-コマンド
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-✔
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-✗
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-✔
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Flex Code
-status open
-
-\begin_layout Plain Layout
 Blank
 \end_layout
 
@@ -2267,7 +2286,7 @@ Blank*
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2276,7 +2295,7 @@ Blank*
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2285,20 +2304,7 @@ Blank*
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-✔
-\begin_inset Formula $^{*1}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2311,7 +2317,20 @@ Blank*
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\begin_inset Formula $^{*1}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2319,6 +2338,71 @@ Blank*
 \end_inset
 
  解答付き
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+AnswerFrame
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+環境
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✗
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+✔
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
