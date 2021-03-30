@@ -7,7 +7,7 @@
 
 Format 66
 
-InsetLayout  "Flex:Input"
+InsetLayout  "Flex:Input/input"
     LyXType     custom
     Decoration  classic
     LabelString Input
@@ -24,4 +24,56 @@ InsetLayout  "Flex:Input"
       Family              typewriter
       Size                Small
     EndFont
+End
+
+InsetLayout  "Flex:Input/graphicspath"
+    LyXType     custom
+    Decoration  classic
+    LabelString graphicspath
+    LatexName   graphicspath
+    LatexType   command
+    MultiPar        false
+    ContentAsLabel  true
+    Font
+      Color               latex
+      Family              typewriter
+    EndFont
+    LabelFont
+      Color               latex
+      Family              typewriter
+      Size                Small
+    EndFont
+    PassThru    true
+End
+
+InsetLayout  "Flex:Input/includegraphics"
+    LyXType     custom
+    Decoration  classic
+    LabelString includegraphics
+    LatexName   myincludegraphics
+    LatexType   command
+    MultiPar        false
+    ContentAsLabel  true
+    Font
+      Color               latex
+      Family              typewriter
+    EndFont
+    LabelFont
+      Color               latex
+      Family              typewriter
+      Size                Small
+    EndFont
+    PassThru    true
+    Argument 1
+      LabelString     "Options"
+      Tooltip         "Options for includegraphics"
+      AutoInsert      1
+      Mandatory       1
+    EndArgument
+    Preamble
+      \newcommand{\myincludegraphics}[2]{%
+        \centering
+        \includegraphics[#1]{#2}
+      }
+    EndPreamble
 End
