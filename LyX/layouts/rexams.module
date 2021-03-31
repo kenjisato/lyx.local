@@ -1,0 +1,278 @@
+#\DeclareLyXModule{lyx.local / R-Exams}
+#DescriptionBegin
+#A custom inset for writing exercises for R-Exams. http://www.r-exams.org/
+#DescriptionEnd
+# Author : Kenji Sato <mail@kenjisato.jp>
+
+Format 66
+
+Preamble
+  \usepackage{a4wide,color,url,amsmath,booktabs,longtable}
+  \newenvironment{question}{\textbf{Problem}\newline}{}
+  \newenvironment{solution}{\textbf{Solution}\newline}{}
+  \newenvironment{answerlist}{\renewcommand{\labelenumi}{(\alph{enumi})}\begin{enumerate}}{\end{enumerate}}
+  \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+EndPreamble
+
+Style Question
+	Category         R-Exams
+  Margin           First_Dynamic
+  LeftMargin       xx
+	LatexType        Environment
+	LatexName        question
+	NextNoIndent     0
+	ToggleIndent     Always
+  LabelType        Static
+  LabelString      "Question"
+  LabelSep              xx
+  LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	ParIndent             MM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align            Block
+  AutoNests
+  	Standard,Answerlist
+  EndAutoNests
+End
+
+Style Solution
+	Category         R-Exams
+  Margin           First_Dynamic
+  LeftMargin       xx
+	LatexType        Environment
+	LatexName        solution
+	NextNoIndent     0
+	ToggleIndent     Always
+  LabelType        Static
+  LabelString      "Solution"
+  LabelSep              xx
+  LabelFont
+	  Shape               Up
+	  Series              Bold
+	EndFont
+	ParIndent             MM
+	ParSkip               0.4
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align            Block
+  AutoNests
+  	Standard,Answerlist
+  EndAutoNests
+End
+
+Style Answerlist
+	Category              R-Exams
+	Margin                Static
+	LatexType             Item_Environment
+	LatexName             answerlist
+	NextNoIndent          1
+	ToggleIndent          Never
+	LeftMargin            MMN
+	LabelSep              xx
+	ParSkip               0.0
+	ItemSep               0.2
+	TopSep                0.7
+	BottomSep             0.7
+	ParSep                0.3
+	Align                 Block
+	AlignPossible         Block, Left
+	LabelType             Enumerate
+	LabelCounter          "enum"
+	HTMLTag               ol
+	HTMLItem              li
+	HTMLLabel             NONE
+End
+
+
+InsetLayout  "Flex:R-Exams/*extype (required)"
+    LyXType         custom
+    Decoration      classic
+    LabelString     extype
+    LatexName       extype
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+End
+
+
+InsetLayout  "Flex:R-Exams/*exname (recommended)"
+    LyXType         custom
+    Decoration      classic
+    LabelString     exname
+    LatexName       exname
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+End
+
+
+InsetLayout  "Flex:R-Exams/extitle (Moodle)"
+    LyXType         custom
+    Decoration      classic
+    LabelString     extitle
+    LatexName       extitle
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+End
+
+
+InsetLayout  "Flex:R-Exams/exsection (Moodle)"
+    LyXType         custom
+    Decoration      classic
+    LabelString     exsection
+    LatexName       exsection
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+End
+
+
+InsetLayout  "Flex:R-Exams/exversion"
+    LyXType         custom
+    Decoration      classic
+    LabelString     exversion
+    LatexName       exversion
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+End
+
+
+InsetLayout  "Flex:R-Exams/*exsolution (required)"
+    LyXType         custom
+    Decoration      classic
+    LabelString     exsolution
+    LatexName       exsolution
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+    PassThruChars   "|"
+End
+
+
+InsetLayout  "Flex:R-Exams/extol"
+    LyXType         custom
+    Decoration      classic
+    LabelString     extol
+    LatexName       extol
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+    PassThruChars   "|"
+End
+
+
+InsetLayout  "Flex:R-Exams/exclozetype"
+    LyXType         custom
+    Decoration      classic
+    LabelString     exclozetype
+    LatexName       exclozetype
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+    PassThruChars   "|"
+End
+
+
+InsetLayout  "Flex:R-Exams/exextra"
+    LyXType         custom
+    Decoration      classic
+    LabelString     exextra
+    LatexName       exextra
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+    Argument 1
+      LabelString    "Option"
+      Tooltip        "\exextra[element_name, storage_type]{values}"
+      LeftDelim      [
+      RightDelim     ]
+      Font
+    	  Family       Typewriter
+      EndFont
+      AutoInsert     1
+      Mandatory      1
+    EndArgument
+    PassThruChars   "|"
+End
