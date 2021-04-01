@@ -8,11 +8,13 @@ Format 66
 
 Preamble
   \usepackage{a4wide,color,url,amsmath,booktabs,longtable}
-  \newenvironment{question}{\textbf{Problem}\newline}{}
+  \newenvironment{question}{\noindent\textbf{Problem}\newline}{}
   \newenvironment{solution}{\textbf{Solution}\newline}{}
-  \newenvironment{answerlist}{\renewcommand{\labelenumi}{(\alph{enumi})}\begin{enumerate}}{\end{enumerate}}
+  \newenvironment{answerlist}{\renewcommand{\labelenumii}{(\alph{enumii})}\begin{enumerate}}{\end{enumerate}}
   \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+  \newenvironment{exercises}{\begin{enumerate}}{\end{enumerate}}
 EndPreamble
+
 
 Style Question
 	Category         R-Exams
@@ -24,21 +26,25 @@ Style Question
 	ToggleIndent     Always
   LabelType        Static
   LabelString      "Question"
-  LabelSep              xx
+  LabelSep         xx
   LabelFont
-	  Shape               Up
-	  Series              Bold
+	  Shape          Up
+	  Series         Bold
 	EndFont
-	ParIndent             MM
-	ParSkip               0.4
-	ItemSep               0.2
-	TopSep                0.7
-	BottomSep             0.7
-	ParSep                0.3
+	ParIndent        MM
+	ParSkip          0.4
+	ItemSep          0.2
+	TopSep           0.7
+	BottomSep        0.7
+	ParSep           0.3
 	Align            Block
+  KeepEmpty        1
   AutoNests
   	Standard,Answerlist
   EndAutoNests
+  IsAutoNestedBy
+    Itemize,Enumerate
+  EndIsAutoNestedBy
 End
 
 Style Solution
@@ -51,18 +57,19 @@ Style Solution
 	ToggleIndent     Always
   LabelType        Static
   LabelString      "Solution"
-  LabelSep              xx
+  LabelSep         xx
   LabelFont
-	  Shape               Up
-	  Series              Bold
+	  Shape          Up
+	  Series         Bold
 	EndFont
-	ParIndent             MM
-	ParSkip               0.4
-	ItemSep               0.2
-	TopSep                0.7
-	BottomSep             0.7
-	ParSep                0.3
+	ParIndent        MM
+	ParSkip          0.4
+	ItemSep          0.2
+	TopSep           0.7
+	BottomSep        0.7
+	ParSep           0.3
 	Align            Block
+  KeepEmpty        1
   AutoNests
   	Standard,Answerlist
   EndAutoNests
@@ -226,6 +233,24 @@ InsetLayout  "Flex:R-Exams/extol"
     PassThruChars   "|"
 End
 
+InsetLayout  "Flex:R-Exams/exshuffle"
+    LyXType         custom
+    Decoration      classic
+    LabelString     exshuffle
+    LatexName       exshuffle
+    LatexType       command
+    MultiPar        false
+    Font
+      Color         latex
+      Family        typewriter
+    EndFont
+    LabelFont
+      Color         latex
+      Family        typewriter
+      Size          Small
+    EndFont
+    PassThruChars   "|"
+End
 
 InsetLayout  "Flex:R-Exams/exclozetype"
     LyXType         custom

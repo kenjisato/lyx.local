@@ -1,5 +1,5 @@
 #% Do not delete the line below; configure depends on this
-#  \DeclareLaTeXClass{Japanese Article (Customized BXJS Class)}
+#  \DeclareLaTeXClass{Japanese Article (BXJS Class)}
 #  \DeclareCategory{Articles}
 # Japanese BXJS article textclass is an extension of JS textclass
 # to incorporate other TeX engines than (u)pLaTeX, e.g. XeLaTeX.

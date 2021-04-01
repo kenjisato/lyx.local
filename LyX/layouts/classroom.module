@@ -9,7 +9,7 @@
 
 Format 66
 
-Preamble
+AddToPreamble
   \usepackage{classroom}
 EndPreamble
 

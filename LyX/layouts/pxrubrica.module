@@ -1,16 +1,13 @@
 #\DeclareLyXModule{lyx.local / pxrubrica}
 #DescriptionBegin
-#Module for inserting ruby characters (https://en.wikipedia.org/wiki/Ruby_character)
+#Support for pxrubrica.sty; inserting ruby characters for Japanese documents. (https://en.wikipedia.org/wiki/Ruby_character)
 #DescriptionEnd
 # Author : Kenji Sato <mail@kenjisato.jp>
 
 Format 66
 
-Counter blanknum
-End
-
-Preamble
-    \usepackage{pxrubrica}
+AddToPreamble
+  \usepackage{pxrubrica}
 EndPreamble
 
 InsetLayout  "Flex:ルビ/ 和文"
