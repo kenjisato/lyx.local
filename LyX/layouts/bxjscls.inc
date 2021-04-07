@@ -57,8 +57,8 @@ InsetLayout  "Flex:Strong"
     ContentAsLabel  false
     Font
 	      Series			Bold
-				Family			Sans
-				Size				Normal
+				Family		Sans
+				Size		Normal
     EndFont
-		HTMLTag					strong
+		HTMLTag	strong
 End

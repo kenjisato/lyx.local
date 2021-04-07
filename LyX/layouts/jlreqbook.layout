@@ -1,0 +1,18 @@
+#% Do not delete the line below; configure depends on this
+#  \DeclareLaTeXClass[jlreq,xkeyval.sty,everyhook.sty,etoolbox.sty,ifthen.sty,lmodern.sty]{Japanese Book (jlreq)}
+#  \DeclareCategory{Books}
+# Requirements for Japanese Text Layout textclass definition file.
+
+# This style provides japanese features 
+Format 66
+Provides japanese 1
+
+# Input general definitions
+Input book.layout
+
+# Definitions specific to jlreq class
+Input jlreq.inc
+
+ClassOptions
+	Other "book"
+End

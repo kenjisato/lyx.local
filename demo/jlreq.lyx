@@ -1,0 +1,377 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass jlreqarticle
+\begin_preamble
+\jlreqsetup{endnote_position={_chapter}}
+\end_preamble
+\options paper=a4,sidenote_length=8zw
+\use_default_options false
+\begin_modules
+logicalmkup
+\end_modules
+\maintain_unincluded_children false
+\language japanese
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement th
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style cjk
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\series bold
+jlreq
+\end_layout
+
+\begin_layout Date
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+和暦
+\backslash
+today
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+佐藤 健治
+\begin_inset Newline newline
+\end_inset
+
+kenjisato.jp
+\end_layout
+
+\begin_layout Abstract
+\SpecialChar LyX
+ 2.3.6 はデフォルトでは
+\series bold
+jlreq
+\series default
+をサポートしていない。\SpecialChar TeX
+ Wiki に 
+\begin_inset CommandInset href
+LatexCommand href
+name "jlreq.layout"
+target "https://texwiki.texjp.org/?LyX%2F%E8%A8%AD%E5%AE%9A#g3fd040c"
+literal "false"
+
+\end_inset
+
+ という項目があり，最低限の使用方法が書かれている。ここではもう少し
+\series bold
+ jlreq
+\series default
+の機能をサポートするレイアウトを紹介する。
+\end_layout
+
+\begin_layout Section
+はじめに
+\begin_inset Argument post:1
+status open
+
+\begin_layout Plain Layout
+どのような問題を解決したいか？
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+阿部紀行氏による
+\series bold
+jlreq
+\series default
+ クラス
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/abenori/jlreq
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+を \SpecialChar LyX
+ で使うためのレイアウトファイルを紹介します。2020年11月に出版された『\SpecialChar LaTeX2e
+ 美文書作成入門 改定第8版
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+奥村晴彦，黒木裕介 (2020)『\SpecialChar LaTeX2e
+ 美文書作成入門 改定第8版』技術評論社。
+\end_layout
+
+\end_inset
+
+』は
+\series bold
+ jlreq
+\series default
+ により組まれ，解説も相当な分量になっています。このことから今後ユーザーがますます増えていくと考えられます。
+\end_layout
+
+\begin_layout Standard
+\SpecialChar TeX
+ Wiki にも最低限使えるようにするための\SpecialChar LyX
+ の設定方法が紹介されていますが，標準の 
+\series bold
+article
+\series default
+ クラスのレイアウトを流用するだけの定義なので，ユーザーが望む機能が使えない可能性があります。例えば，
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+section
+\end_layout
+
+\end_inset
+
+ 等の副題
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+sidenote
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+
+\backslash
+endnote
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+などが使用できません
+\begin_inset Flex JL/sidenote
+status open
+
+\begin_layout Plain Layout
+傍注はクラスオプションで傍注の幅（
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+sidenote_length
+\end_layout
+
+\end_inset
+
+）を0より大きく設定して初めて使用できます。このドキュメントでは
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+8zw
+\end_layout
+
+\end_inset
+
+です。\SpecialChar LyX
+にはクラスオプションを読み込んでインセットを消したり出したりする機能はないので，常時 Custom Inset 一覧に表示されます。
+\end_layout
+
+\end_inset
+
+。
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+endnote{test}
+\end_layout
+
+\end_inset
+
+ この問題を解決するためのカスタムレイアウトファイルを作り，GitHubレポジトリ
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "kenjisato/lyx.local"
+target "https://github.com/kenjisato/lyx.local"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ で公開しています。ぜひインストールしてご利用ください。インストール方法は公式ドキュメントをご覧いただくか，上記レポジトリのトップにも記載しています。なお，この
+資料のソースファイルは前述のレポジトリの 
+\begin_inset Flex Code
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "demo/jlreq.lyx"
+target "https://github.com/kenjisato/lyx.local/tree/main/LyX/demo"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+です。この文書自体もそのレイアウトファイルを提供した上で\SpecialChar LyX
+を使って作成しました。概要やセクションの副題が問題なく出力されていて，そのためにERTや特殊なプリアンブ
+ルの定義をしていないことを確認いただけると思います。 
+\end_layout
+
+\begin_layout Subsection
+小節
+\begin_inset Argument post:1
+status open
+
+\begin_layout Plain Layout
+subsection にも副題が付くよ
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+項
+\begin_inset Argument post:1
+status open
+
+\begin_layout Plain Layout
+subsubsection にも副題が付くよ
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+aaa
+\end_layout
+
+\end_body
+\end_document
