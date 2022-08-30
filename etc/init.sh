@@ -26,7 +26,9 @@ linux_init() {
 mac_init() {
   path_prefix="${HOME}/Library/Application Support/LyX-"
   VERSION=$(find_latest_version "$path_prefix")
-  echo Python="$(which python)" > $cfg
+  local Python="$(which python)"
+  [ -z "$Python" ] && Python="$(which python3)"
+  echo Python="$Python" > $cfg
   echo LyX=/Applications/LyX.app/Contents/MacOS/lyx >> $cfg
   echo LyXDir=/Applications/LyX.app/Contents/Resources >> $cfg
   echo UserDir=\"${HOME}/Library/Application Support/LyX-${VERSION}\" >> $cfg
