@@ -18,10 +18,10 @@ else
 fi
 
 if [ -d "$TexMfHome" ]; then
-  newfiles=$(diff -qr "$TexMfHome/tex/latex" LaTeX | grep "^Only in LaTeX/")
-  cp -rv LaTeX/* $TexMfHome/tex/latex/
+  newfiles=$(diff -qr "$TexMfHome" TexMf | grep "^Only in TexMf/" | grep -v ".DS_Store")
+  rsync -a texmf/ $TexMfHome/ --exclude '.DS_Store'
 
-  if [ -z $newfiles ] || mktexlsr; then
+  if [ -z "$newfiles" ] || mktexlsr; then
     praise "You're all set!"
   else
     warn "mktexlsr failed."

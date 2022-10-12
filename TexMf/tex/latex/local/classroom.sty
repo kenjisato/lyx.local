@@ -8,7 +8,10 @@
 \usepackage{environ}
 \usepackage{latexsym}
 
-\providecommand\qed{\hfill $\Box$}
+\providecommand\solutionEnd{\hfill $\Box$}
+
+
+\newcommand{\solutionColor}{magenta}
 
 %%
 %% clrmMode:
@@ -48,12 +51,12 @@
   \refstepcounter{blanknum} %
   \setlength\blankboxwidth{3em+\widthof{\blankboxWriteSolution{#1}}}%
   \protect\framebox[\blankboxwidth][c]{%
-    (\theblanknum)\ifbool{showSolution}{{\color{cyan} \blankboxWriteSolution{#1}}}{}}%
+    (\theblanknum)\ifbool{showSolution}{{\color{\solutionColor} \blankboxWriteSolution{#1}}}{}}%
 }
 \WithSuffix\newcommand\blankbox*[3]{%
   \setlength\blankboxwidth{#2+\widthof{#1 }+\widthof{\blankboxWriteSolution{#3}}}%
   \ifbool{showSolution}{%
-    \protect\framebox[\blankboxwidth][c]{{\color{cyan} \blankboxWriteSolution{#3}}}%
+    \protect\framebox[\blankboxwidth][c]{{\color{\solutionColor} \blankboxWriteSolution{#3}}}%
   }{%
     \protect\framebox[\blankboxwidth][l]{#1\phantom{\blankboxWriteSolution{#3}}}%
   }%
@@ -68,9 +71,9 @@
   \ifboolexpr{%
     test {\ifstrequal{#1}{true}} or test {\ifstrequal{#1}{True}} or test {\ifstrequal{#1}{TRUE}}%
   }{%
-    \fcolorbox{cyan}{white}{\TFTrueLabel}~/~\TFFalseLabel%
+    \fcolorbox{\solutionColor}{white}{\TFTrueLabel}~/~\TFFalseLabel%
   }{%
-    \TFTrueLabel~/~\fcolorbox{cyan}{white}{\TFFalseLabel}%
+    \TFTrueLabel~/~\fcolorbox{\solutionColor}{white}{\TFFalseLabel}%
   }%
 }
 
@@ -145,7 +148,7 @@
       \global\late@solutiontoks=\expandafter{\@tempa}%
     }%
   \ifboolexpr{ test {\ifstrequal{#2}{here}} or bool {showSolution} }{%
-        \ifbool{showSolution}{\color{cyan}}{}%
+        \ifbool{showSolution}{\color{\solutionColor}}{}%
         \late@solution{#1}{#3}{\the\toks@}%
       }{}%
 }%
@@ -157,7 +160,7 @@
   \par\noindent\writeSolutionFrameLabel{#1}{#2}%
   \par
   #3
-  \qed\vspace{0.5\baselineskip}%
+  \solutionEnd\vspace{0.5\baselineskip}%
 }
 \newcommand{\printsolutions}{%
   \the\late@solutiontoks
@@ -178,7 +181,7 @@
   \ifbool{showBlankbox}{%
     \bgroup%
       \setFrameLength%
-      \vspace{-0.5\baselineskip}%
+      %\vspace{-0.5\baselineskip}%
       \begin{outerAnswerFrame}
         \noindent{\small \writeAnswerFrameLabel{#1}}
         \vspace{\clrmInnerFrameSep}
@@ -199,5 +202,5 @@
 %% TeacherOnly for clrmMode=teacher/draft
 %%
 \newenvironment{TeacherOnly}
-  {\ifbool{showSolution}{\color{cyan}}{\comment}}%
+  {\ifbool{showSolution}{\color{\solutionColor}}{\comment}}%
   {\ifbool{showSolution}{}{\endcomment}}
