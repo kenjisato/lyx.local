@@ -1,3 +1,7 @@
+% myjecon.bst
+% personalization of jecon.bst v.6.5.1 by Shiro Takada
+%% The original copyright notices are as follows.
+%%
 %% jecon.bst: 経済学用 BibTeX スタイルファイル（BibTeX style file for economics）
 %
 % Author: Shiro Takeda (武田史郎)
@@ -3481,12 +3485,14 @@ FUNCTION {book}
   if$
   format.book "title" output.check.nocomma
 
+%%------------
+  format.edition output.nocomma
+
   format.translator output.nocomma
   format.bvolume output.nocomma
   format.number.series output.nocomma
   output.publisher.address
 
-  format.edition output.nocomma
   format.book.pages output.nocomma
 
   bst.year.position #0 = not
