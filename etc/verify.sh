@@ -5,7 +5,7 @@ verify_cfg() {
   else
     source "$1"
   fi
-  python_required=('2.7.*' '3.5.*' '3.6.*' '3.7.*' '3.8.*' '3.9.*')
+  python_required=('2.7.*' '3.5.*' '3.6.*' '3.7.*' '3.8.*' '3.9.*', '3.1*')
   lyxdir_needs=configure.py
   userdir_needs=configure.log
 
