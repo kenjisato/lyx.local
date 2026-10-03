@@ -40,12 +40,17 @@ mac_init() {
 }
 
 msys_init() {
-  path_prefix="/c/Users/${USER}/AppData/Roaming/LyX"
+  path_prefix="${HOME}/AppData/Roaming/LyX"
   VERSION=$(find_latest_version "$path_prefix")
   echo Python=\"/c/Program Files/LyX $VERSION/python/python.exe\" > $cfg
   echo LyX=\"/c/Program Files/LyX $VERSION/bin/LyX.exe\" >> $cfg
   echo LyXDir=\"/c/Program Files/LyX $VERSION/Resources\" >> $cfg
-  echo UserDir=\"/c/Users/${USER}/AppData/Roaming/LyX$VERSION\" >> $cfg
+  echo UserDir=\"${HOME}/AppData/Roaming/LyX$VERSION\" >> $cfg
+  if ! command -v kpsewhich &> /dev/null; then
+    echo TexMfHome= >> $cfg
+  else
+    echo TexMfHome=\"$(cygpath -u "$(kpsewhich -var-value TEXMFHOME)")\" >> $cfg
+  fi
 }
 
 cygwin_init() {

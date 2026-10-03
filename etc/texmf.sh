@@ -19,7 +19,12 @@ fi
 
 if [ -d "$TexMfHome" ]; then
   newfiles=$(diff -qr "$TexMfHome" TexMf | grep "^Only in TexMf/" | grep -v ".DS_Store")
-  rsync -a texmf/ $TexMfHome/ --exclude '.DS_Store'
+  if command -v rsync >/dev/null 2>&1; then
+    rsync -a TexMf/ "$TexMfHome"/ --exclude '.DS_Store'
+  else
+    # Git for Windows (MINGW) has no rsync.
+    cp -R TexMf/. "$TexMfHome"/
+  fi
 
   if [ -z "$newfiles" ] || mktexlsr; then
     praise "You're all set!"
