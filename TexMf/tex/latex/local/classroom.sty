@@ -153,7 +153,10 @@
       }{}%
 }%
 
+% Equations in a solution are numbered (i), (ii), ... from zero. \setcounter is
+% global, so the counter of the main text is restored afterwards.
 \newcommand{\late@solution}[3]{%
+  \begingroup
   \setcounter{answersavedequation}{\value{equation}}%
   \setcounter{equation}{0}%
   \renewcommand{\theequation}{\roman{equation}}%
@@ -161,6 +164,8 @@
   \par
   #3
   \solutionEnd\vspace{0.5\baselineskip}%
+  \setcounter{equation}{\value{answersavedequation}}%
+  \endgroup
 }
 \newcommand{\printsolutions}{%
   \the\late@solutiontoks
@@ -177,26 +182,39 @@
   \textbf{\AnswerFrameLabel\ansReferenceLabel}%
 }
 
-\NewEnviron{AnswerFrame}[2]{ % #1=ref, #2=height (in \baselineskip)
+% The frame is one unbreakable box: if it does not fit, it moves to the next
+% page as a whole. Its height is #2 lines, or the height of the contents
+% (e.g. a solution shown in draft mode) if that is larger.
+\makeatletter
+\newsavebox\clrm@answerbox
+\newlength\clrm@answerwidth
+\newlength\clrm@answerheight
+\NewEnviron{AnswerFrame}[2]{% #1=ref, #2=height (in \baselineskip)
   \ifbool{showBlankbox}{%
-    \bgroup%
-      \setFrameLength%
-      %\vspace{-0.5\baselineskip}%
-      \begin{outerAnswerFrame}
-        \noindent{\small \writeAnswerFrameLabel{#1}}
-        \vspace{\clrmInnerFrameSep}
-        \bgroup
-          \setlength\OuterFrameSep{0pt}
-          \begin{innerAnswerFrame}
-            \par\noindent\begin{minipage}[t][#2\baselineskip]{\textwidth}
-              \BODY
-            \end{minipage}
-          \end{innerAnswerFrame}
-        \egroup
-      \end{outerAnswerFrame}
-    \egroup
-  }{}
+    \par\addvspace{\topsep}%
+    \begingroup
+      \setlength\fboxsep{\clrmOuterFrameSep}%
+      \setlength\clrm@answerwidth{\linewidth-2\fboxsep-2\fboxrule}%
+      \begin{lrbox}{\clrm@answerbox}%
+        \begin{minipage}[t]{\clrm@answerwidth}
+          \BODY
+        \end{minipage}%
+      \end{lrbox}%
+      \setlength\clrm@answerheight{#2\baselineskip}%
+      \ifdim\dimexpr\ht\clrm@answerbox+\dp\clrm@answerbox\relax>\clrm@answerheight
+        \setlength\clrm@answerheight{\ht\clrm@answerbox+\dp\clrm@answerbox}%
+      \fi
+      \noindent\fbox{%
+        \begin{minipage}{\clrm@answerwidth}
+          {\small\writeAnswerFrameLabel{#1}}\par
+          \vspace{\clrmInnerFrameSep}%
+          \parbox[t][\clrm@answerheight][t]{\clrm@answerwidth}{\usebox\clrm@answerbox}%
+        \end{minipage}}%
+    \endgroup
+    \par\addvspace{\topsep}%
+  }{}%
 }
+\makeatother
 
 %%
 %% TeacherOnly for clrmMode=teacher/draft
